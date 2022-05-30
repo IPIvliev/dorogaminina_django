@@ -1,0 +1,47 @@
+{% load static %}
+<!-- NAVIGATION -->
+   <nav class="fixed-top" id="navigation">
+    <div class="container">
+        <div class="row-fluid">
+            <div class="span12 center">
+                <!-- LOGO -->
+                <a class="brand pull-left" href="./">
+                    Открытый велопробег "Дорога Минина-2019"
+                </a>
+                <!-- END LOGO -->
+
+                <!-- MOBILE MENU BUTTON -->
+                <div class="mobile-menu" data-toggle="collapse" data-target=".nav-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </div>
+                <!-- END MOBILE MENU BUTTON -->
+                
+                <!-- MAIN MENU -->
+                <ul id="main-menu" class="nav-collapse collapse">
+                    <li><a href="#page-welcome">Информация</a></li>
+                        {% if current_user %}
+                            <li><%= link_to "Логин", current_user %></li>
+                        {% else %}
+                            <li><a href="#page-registration">Регистрация</a></li>
+                        {% endif %}
+                    
+                    <li><a href="#page-history">О проекте</a></li>
+                    <li><a href="#page-foundation">Интерактивная выставка</a></li>
+                    <li><a href="#page-gallery">Галерея</a></li>
+                    <li><a href="#page-clients">Партнёры</a></li>
+                    <li>
+                      <a href="#" class="btn">Выход</a>
+                    </li>
+                </ul>
+                <!-- END MAIN MENU -->
+                
+                <!-- SOCIAL ICONS -->
+                    {% include "shared/headsocial.html" %}
+                <!-- END SOCIAL ICONS -->
+            </div>
+        </div>
+    </div>
+</nav>
+<!-- END NAVIGATION -->

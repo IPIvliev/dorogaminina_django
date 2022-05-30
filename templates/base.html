@@ -1,0 +1,17 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>{{title}}</title>
+    <link rel="stylesheet" href="{% static 'css/application.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+		<meta name="keywords" content="велопробег, Дорога Минина, Нижний Новгород, велотуризм, велосипед, Балахна, массовые мероприятия, Никитин, День народного единства, 4 ноября" />
+		<meta name="description" content="Открытый велопробег Дорога Минина-2022" />
+	</head>
+	<body>
+    {% include 'header.html' %}
+    {% block content %}
+    {% endblock %}
+    {% include 'footer.html' %}
+	</body>
+</html>
