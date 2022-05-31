@@ -2,363 +2,594 @@
 {% load static %}
 
 {% block content %}
-<link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,700,600,300,800' rel='stylesheet' type='text/css'>
 
-<!-- PAGE | WELCOME -->
-<div class="pages white paralax page-welcome" id="page-welcome">
- <div class="overlay"></div>
- <!-- Centralized content -->
- <div class="centralized">
-     <div class="container">
-         <div class="row-fluid">
-             <div class="span12 center">
-                 <!-- Animated logo -->
-                 <div class="logo">
-                     <div class="scrollNormal">
-                         <a href="#page-registration">
-                             <img src="{% static '/images/logo_welcome.png' %}" width="140" height="140">
-                         </a>
-                     </div>
-                     <div class="scrollDown">
-                         <a href="#page-registration">
-                             <img src="{% static '/images/logo_urus_large.jpg' %}" width="240" height="240">
-                         </a>
-                     </div> 
-                 </div>
-                 
-                 <div class="line-divider" id="welcome-messages">
-                     <ul class="slides">
+<!-- Заголовок -->
+<section class="home-slider js-fullheight owl-carousel ftco-degree-bottom">
+  <div class="slider-item js-fullheight" style="background-image: url('{% static 'images/bg_4.jpg' %}');">'
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row slider-text js-fullheight justify-content-center align-items-center" data-scrollax-parent="true">
 
-                         <li>
-                             <h1>ДОРОГА МИНИНА</h1>
-                         </li>
-                         <li>
-                             <h1 style="color: red;">19 мая 2019 года</h1>
-                         </li>
-                         <li>
-                             <h1>Нижний Новгород - Мулино</h1>
-                         </li>
+        <div class="col-sm-12 ftco-animate text-center">
+          <h1 class="mb-4">Велопробег<br> "Дорога Минина - 2022"</h1>
+          <h2 class="subheading">Экспедиция<br> "Русская Цивилизация"</h2>
+          <a href="#registration" class="btn-custom py-4" style="margin-top: 50px;">Зарегистрироваться</a>
+        </div>
 
-                     </ul>
-                 </div>
-                 <p>Открытый велопробег "Дорога Минина-2019"</p>
-                 <p class="red" style="font-size:2em;">Велопробег состоится 19 мая 2019 года! H</p>
-                 {% include "shared/social.html" %}
-                 <p></p>
-                 <div class="social-icons sicon-white bordered">
-                     <a href="#">
-                         <img src="{% static '/images/clients/fnk.jpg' %}" alt="Treble">
-                     </a>
-                     <a href="http://government-nnov.ru" target="_blank">
-                         <img src="{% static '/images/clients/07.jpeg' %}" alt="Treble">
-                     </a>
+      </div>
+    </div>
+  </div>
 
-                     <a href="#">
-                         <img src="{% static '/images/clients/napp.jpg' %}" alt="Treble">
-                     </a>
-                     <a href="http://www.nizhprof.ru" target="_blank">
-                         <img src="{% static '/images/clients/oblsovprof.jpg' %}" alt="Treble">
-                     </a>
-                     <!-- Фонд Метрополита
-                     <a href="http://www.mitropolitfound.ru/" target="_blank">
-                         <img src="/images/clients/fond_nik.jpg" alt="Treble">
-                     </a>
-                     -->
-                     <a href="http://veloclubnn.ru" target="_blank">
-                         <img src="{% static '/images/clients/velo_nn.jpg' %}" alt="Treble">
-                     </a>                      
-                 </div><p>Организаторы проекта</p>
-                 
-                 <div class="social-icons sicon-white bordered">
+  <div class="slider-item js-fullheight" style="background-image: url({% static 'images/bg_5.jpg' %});">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row slider-text js-fullheight justify-content-center align-items-center" data-scrollax-parent="true">
 
-                     <a href="#">
-                         <img src="{% static '/images/clients/lukoil.jpg' %}" alt="Treble">
-                     </a>
-                 </div><p>ГЕНЕРАЛЬНЫЙ ПАРТНЁР ПРОЕКТА - КОМПАНИЯ "ЛУКОЙЛ"</p>
-             </div>
-         </div>
-     </div>
- </div>
-</div>
-<!-- END PAGE | Welcome -->
+        <div class="col-sm-12 ftco-animate text-center">
+          <h1 class="mb-4">Велопробег<br> "Дорога Минина - 2022"</h1>
+          <h2 class="subheading">Экспедиция<br> "Русская Цивилизация"</h2>
+          <a href="#registration" class="btn-custom py-4" style="margin-top: 50px;">Зарегистрироваться</a>
+        </div>
 
-{% include 'shared/registration.html' %}
+      </div>
+    </div>
+  </div>
+</section> 
 
-<!--  include 'shared/wait.html' %} -->
+<!-- Описание -->
+<section class="ftco-section-services ftco-degree">
+  <div class="container">
+    <div class="row d-flex align-items-center">
+      <div class="col-xl-6 d-flex align-self-stretch">
+        <div class="align-self-stretch"><img src="{% static 'images/about-6.png' %}" class="img-fluid" alt=""></div>
+      </div>
+      <div class="col-xl-6 align-self-stretch pt-5">
+        <div class="row justify-content-center mb-3">
+          <div class="col-md-12 heading-section ftco-animate">
+            <h3 class="subheading">Узнай Россию</h3>
+            <h2 class="mb-4">Узнай себя!</h2>
+          </div>
+        </div>
+        <div class="services d-flex ftco-animate">
+          <div class="icon d-flex justify-content-center align-items-center">
+            <span class="flaticon-stationary-bike"></span>
+          </div>
+          <div class="text ml-5">
+            <h3>Катайся на велосипеде</h3>
+            <p>Текст 1</p>
+          </div>
+        </div>
+        <div class="services d-flex ftco-animate">
+          <div class="icon d-flex justify-content-center align-items-center">
+            <span class="flaticon-gym"></span>
+          </div>
+          <div class="text ml-5">
+            <h3>Работай в команде</h3>
+            <p>Текст 2</p>
+          </div>
+        </div>
+        <div class="services d-flex ftco-animate">
+          <div class="icon d-flex justify-content-center align-items-center">
+            <span class="flaticon-tools-and-utensils"></span>
+          </div>
+          <div class="text ml-5">
+            <h3>Изучи историю</h3>
+            <p>Текст 3</p>
+          </div>
+        </div>
+        <div class="services d-flex ftco-animate">
+          <div class="icon d-flex justify-content-center align-items-center">
+            <span class="flaticon-heart"></span>
+          </div>
+          <div class="text ml-5">
+            <h3>На свежем воздухе</h3>
+            <p>Текст 4</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-<!-- PAGE | HISTORY  -->
-<div class="pages black-bg white page-features" id="page-history">
- <div class="overlay"></div>
- <div class="container">
-  <!-- Header -->
-  <header>
-     <h4 class="line-divider">О велопробеге</h4>                
-     <div class="row">
-         <div class="span12" >
+<!-- Статистика -->
+<section class="ftco-counter ftco-bg-dark img" id="section-counter" style="background-image: url({% static 'images/bg_5.jpg' %});" data-stellar-background-ratio="0.5">
+  <div class="overlay"></div>
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-10">
+        <div class="row">
+          <div class="col-md-6 col-lg-3 d-flex justify-content-center counter-wrap ftco-animate">
+            <div class="block-18 text-center">
+              <div class="text">
+                <strong class="number" data-number="1000">0</strong>
+                <span>Участников</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3 d-flex justify-content-center counter-wrap ftco-animate">
+            <div class="block-18 text-center">
+              <div class="text">
+                <strong class="number" data-number="74">0</strong>
+                <span>Киллометра</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3 d-flex justify-content-center counter-wrap ftco-animate">
+            <div class="block-18 text-center">
+              <div class="text">
+                <strong class="number" data-number="15">0</strong>
+                <span>Велопробегов</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3 d-flex justify-content-center counter-wrap ftco-animate">
+            <div class="block-18 text-center">
+              <div class="text">
+                <strong class="number" data-number="900">0</strong>
+                <span>Футболок</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-             <p style="font-size:1.2em; line-height: 120%; align: left;">
-             19 мая 2019 года состоится XIV Открытый велопробег «Дорога Минина» (далее – велопробег), организованный Фондом «Нижегородский Кремль» в партнерстве с Нижегородским региональным отделением ВОО «Русское географическое общество» при поддержке Правительства Нижегородской области. Велопробег проводится в формате историко-патриотического проекта «Время узнать Россию» , приуроченного к 800-летию основания Нижнего Новгорода, и посвящается Дню памяти гражданина Минина, отмечаемому в Нижегородской области 21 мая. Проведение велопробега поддержали Общественная палата Нижегородской области, Нижегородское областное объединение организаций профсоюзов «Облсовпроф», Нижегородская Ассоциация промышленников и предпринимателей, Автономная некоммерческая организация «Велоклуб-НН».
-             </p>
-             <p style="font-size:1.2em; line-height: 120%; align: left;">
-             Генеральный партнер велопробега – Компания «ЛУКОЙЛ».</p>
-             <p style="font-size:1.2em; line-height: 120%; align: left;">
-             Партнер велопробега – АО «Транснефть-Верхняя Волга».</p>
-             <p style="font-size:1.2em; line-height: 120%; align: left;">Участники велопробега будут знакомиться с ратным мужеством Кузьмы Минина, имеющим свое продолжение в воинской службе современных защитников Отечества, и посетят расположение 6-ой отдельной танковой Ченстоховской Краснознаменной ордена Кутузова II степени бригады. На привале велосипедисты увидят выставку вооружения и военной техники, стрелкового оружия, образцов формы одежды и боевой экипировки, познакомятся с элементами вождения боевой техники, отведают солдатской каши, примут участие в историко-спортивной викторине и музыкально-развлекательной программе.</p>
-             <p style="font-size:1.2em; line-height: 120%; align: left;">Маршрут велопробега протяженностью 40 километров пройдет по территории Володарского района Нижегородской области. Участники велопробега соберутся в Нижнем Новгороде на станции Московский вокзал, сядут в электропоезд, доедут до станции Ильиногорск, далее на велосипедах поедут до поселка Мулино. По возвращении в Ильиногорск велосипедисты на электропоезде вернутся на станцию Московский вокзал в Нижний Новгород. Электропоезда будут арендованы специально для участников велопробега.</p>
-             <p style="font-size:1.2em; line-height: 120%; align: left;">Участие в велопробеге – это не только дань памяти национальным героям, демонстрация приверженности спортивному образу жизни, но и возможность расширить познания в истории Отечества, и стать участником благотворительного проекта. По благословению митрополита Нижегородского и Арзамасского Георгия велопробег получил статус БЛАГОТВОРИТЕЛЬНОГО. Средства в размере 10% от организационного взноса (за вычетом налоговых платежей) пойдут на благоустройство надгробия на могиле Кузьмы Минина в Михайло-Архангельском соборе Нижегородского кремля. </p>
-             <p style="font-size:1.2em; line-height: 120%; align: left;">МК участию в велопробеге приглашаются все, кто чтит гражданский и воинский подвиг предков, любит кататься на велосипеде и достиг 18-ти лет. При себе иметь: велосипед, медицинский полис, паспорт, сотовый телефон. Желательно наличие велошлема. Велоколонна будет сопровождаться сотрудниками ГИБДД и машинами «Скорой помощи».</p>
-             <p style="font-size:1.2em; line-height: 120%; align: left;"><b>ВНИМАНИЕ!</b></p>
-             <p style="font-size:1.2em; line-height: 120%; align: left;">В связи с ограниченным количеством мест в электропоездах вводится квота для участия в велопробеге: для физических лиц – 400 мест, для корпоративных команд организаций и предприятий – 200 мест. Велосипедисты, планирующие начать и завершить велопробег на ст. Ильиногорск, регистрируются вне квоты в специальном звене «Ильиногорск».</p>
-             
+<!-- О проекте -->
+<section class="ftco-about d-md-flex bg-light ">
+  <div class="one-half img" style="background-image: url({% static 'images/about-4.jpg' %});">
+    <a href="https://youtu.be/mr_t-xvZbcs" class="icon popup-vimeo d-flex justify-content-center align-items-center">
+      <span class="icon-play"></a>
+    </a>
+  </div>
+  <div class="one-half ftco-animate">
+    <div class="heading-section ftco-animate ">
+      <h3 class="subheading">О проекте</h3>
+      <h2 class="mb-5">Велопробег <br>Дорога Минина</h2>
+    </div>
+    <div>
+      <p>Участники велопробега будут знакомиться с ратным мужеством Кузьмы Минина, имеющим свое продолжение в воинской службе современных защитников Отечества.</p>
+      <p>Участие в велопробеге – это не только дань памяти национальным героям, демонстрация приверженности спортивному образу жизни, но и возможность расширить познания в истории Отечества</p>
+    </div>
+  </div>
+</section>
 
-             <ul><strong style="font-size:1.5em; line-height: 120%;">Программа велопробега включает в себя:</strong>
-                 <li style="font-size:1.5em; line-height: 120%;">7.45-8.45 – сбор, выдача корпоративных футболок, досмотр и проход на платформу № 6, посадка в электропоезд по звеньям (г. Нижний Новгород, Гордеевский сквер напротив дома № 13 по Московскому шоссе, с дальнейшим проходом через подземный переход к Пригородному вокзалу и платформе № 6);
-                 <li style="font-size:1.5em; line-height: 120%;">движение электропоезда по маршруту: ст. Нижний Новгород – ст. Ильиногорск;
-                 <li style="font-size:1.5em; line-height: 120%;">9.30-10.00 – выдача корпоративных футболок участникам, присоединяющимся на ст. Ильиногорск (ст. Ильиногорск);;
-                 <li style="font-size:1.5em; line-height: 120%;">10.00 – прибытия электропоезда на ст. Ильиногорск;
-                 <li style="font-size:1.5em; line-height: 120%;">10.00 – движение по маршруту: ст. Ильиногорск – пос. Мулино;
-                 <li style="font-size:1.5em; line-height: 120%;">тематическое мероприятие, привал с солдатской кашей и общением;
-                 <li style="font-size:1.5em; line-height: 120%;">движение по маршруту: пос. Мулино – ст. Ильиногорск; 
-                 <li style="font-size:1.5em; line-height: 120%;">16.30 – посадка в электропоезд по звеньям (ст. Ильиногорск);
-                 <li style="font-size:1.5em; line-height: 120%;">движение электропоезда по маршруту: ст. Ильиногорск - ст. Нижний Новгород;
-                 <li style="font-size:1.5em; line-height: 120%;">17.40 - прибытие электропоезда на ст. Нижний Новгород (Московский вокзал).
-                 
-             </ul>
-              <p style="font-size:1.2em; line-height: 120%; align: left;">Примечание: Время возвращения в Нижний Новгород может незначительно отличаться в виду согласования с РЖД графика движения электропоездов. </p>
+<!-- Команда -->
+<section class="ftco-section bg-light">
+  <div class="container-fluid">
+    <div class="row justify-content-center mb-5">
+      <div class="col-md-7 heading-section text-center ftco-animate">
+        <h3 class="subheading">Узнай Россию - Узнай себя!</h3>
+        <h2 class="mb-1">Наша команда</h2>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-3 d-flex">
+        <div class="coach align-items-stretch">
+          <div class="img" style="background-image: url({% static 'images/org-1.jpg' %});"></div>
+          <div class="text bg-white p-4 ftco-animate">
+            <span class="subheading">Организатор проекта</span>
+            <h3><a href="#">Сергей Малиновский</a></h3>
+            <p>Краткий текст с описанием, мнением о велопробеге.</p>
+            <ul class="ftco-social-media d-flex mt-4">
+              <li class="ftco-animate"><a href="#" class="mr-2 d-flex justify-content-center align-items-center"><span class="icon-twitter"></span></a></li>
+              <li class="ftco-animate"><a href="#" class="mr-2 d-flex justify-content-center align-items-center"><span class="icon-facebook"></span></a></li>
+              <li class="ftco-animate"><a href="#" class="mr-2 d-flex justify-content-center align-items-center"><span class="icon-instagram"></span></a></li>
+            </ul>
+            <p></p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 d-flex">
+        <div class="coach d-md-flex flex-column-reverse align-items-stretch">
+          <div class="img" style="background-image: url({% static 'images/org-2.jpg' %});"></div>
+          <div class="text bg-white p-4 ftco-animate">
+            <span class="subheading">Руководитель велодвижения</span>
+            <h3><a href="#">Игорь Бабин</a></h3>
+            <p>Краткий текст с описанием, мнением о велопробеге.</p>
+            <ul class="ftco-social-media d-flex mt-4">
+              <li class="ftco-animate"><a href="#" class="mr-2 d-flex justify-content-center align-items-center"><span class="icon-twitter"></span></a></li>
+              <li class="ftco-animate"><a href="#" class="mr-2 d-flex justify-content-center align-items-center"><span class="icon-facebook"></span></a></li>
+              <li class="ftco-animate"><a href="#" class="mr-2 d-flex justify-content-center align-items-center"><span class="icon-instagram"></span></a></li>
+            </ul>
+            <p></p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 d-flex">
+        <div class="coach align-items-stretch">
+          <div class="img" style="background-image: url(images/org-3.jpg);"></div>
+          <div class="text bg-white p-4 ftco-animate">
+            <span class="subheading">Директор ООО "Контакт"</span>
+            <h3><a href="#">Максим Толкуев</a></h3>
+            <p>Краткий текст с описанием, мнением о велопробеге.</p>
+            <ul class="ftco-social-media d-flex mt-4">
+              <li class="ftco-animate"><a href="#" class="mr-2 d-flex justify-content-center align-items-center"><span class="icon-twitter"></span></a></li>
+              <li class="ftco-animate"><a href="#" class="mr-2 d-flex justify-content-center align-items-center"><span class="icon-facebook"></span></a></li>
+              <li class="ftco-animate"><a href="#" class="mr-2 d-flex justify-content-center align-items-center"><span class="icon-instagram"></span></a></li>
+            </ul>
+            <p></p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 d-flex">
+        <div class="coach d-md-flex flex-column-reverse align-items-stretch">
+          <div class="img" style="background-image: url(images/org-4.jpg);"></div>
+          <div class="text bg-white p-4 ftco-animate">
+            <span class="subheading">Руководитель орггруппы</span>
+            <h3><a href="#">Никита Груздев</a></h3>
+            <p>Краткий текст с описанием, мнением о велопробеге.</p>
+            <ul class="ftco-social-media d-flex mt-4">
+              <li class="ftco-animate"><a href="#" class="mr-2 d-flex justify-content-center align-items-center"><span class="icon-twitter"></span></a></li>
+              <li class="ftco-animate"><a href="#" class="mr-2 d-flex justify-content-center align-items-center"><span class="icon-facebook"></span></a></li>
+              <li class="ftco-animate"><a href="#" class="mr-2 d-flex justify-content-center align-items-center"><span class="icon-instagram"></span></a></li>
+            </ul>
+            <p></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-                                    
-                                 </div>
-                             </div>
-                         </header>
-                         <!-- End Header -->
-                         
-                         <!-- Article -->
-                         <article>
-                             <!-- Features blocks -->
-                             <div class="row-fluid">
-                                 <!--
-                                 <div class="span4 center">
-                                     <a href="/images/about01.jpg" target="_blank" data-destination="portfolio-items" data-insert="before">
-                                         <img src="/images/about01.jpg" alt="Treble">
-                                     </a>
-                                     <h5>Маршрут велопробега</h5>
-                                 </div>
-                                 -->
-                                 <div class="span4 center">
-                                     <iframe width="360" height="280" src="//www.youtube.com/embed/mr_t-xvZbcs" frameborder="0" allowfullscreen></iframe>
-                                     <h5>Видео с квадрокоптера</h5>
-                                     
-                                 </div>
-                                 <div class="span4 center">
-                                     <iframe width="360" height="280" src="//www.youtube.com/embed/nup2MUTSZE0" frameborder="0" allowfullscreen></iframe>
-                                     <h5>Слайд-шоу</h5>
-                                     
-                                 </div>
-                             </div>
-                             <!-- Testemonials -->
-                             <div class="row-fluid">
-                                 <div class="span8 offset2">
-                                     <div class="quote center">
-                                         <div id="quote-slider" class="slide">
-                                             <!-- Carousel items -->
-                                             <div class="carousel-inner">
-                                                 <div class="active item">
-                                                     Огромное спасибо всем!! Покорило внимание и забота друг о друге! Отдельное спасибо Илье, звеньевому 21 звена, - классно ехали, ровно и быстро почти всегда! А ещё спасибо ребятам, которые помогли на "финишной прямой" по городу - здорово мчались с вами!!!
-                                                     <h5>Ксения Назаровская</h5>
-                                                 </div>
-                                                 <div class="item">
-                                                     Огромное спасибо организаторам этого пробега! я хоть и ехал почти в конце но мне всё понравилось!) Жду подобных мероприятий!!!
-                                                     <h5>Роман Ерышев</h5> 
-                                                 </div>
-                                                 <div class="item">
-                                                     Всем огромное спасибо! пробег был офигенный, нам очень понравилось всё! Вело-дзержинск хочет уже повторения) мега-круто было!
-                                                     <h5>Никита Дмитриев</h5>
-                                                 </div>
-                                                 <div class="item">
-                                                     Спасибо всем огромное за такое мега позитивное мероприятие! Было очень круто и здорово во всех смыслах слова)Спасибо 22 звену за отличное настроение и особенно всем тем, кто помогал справится с моей желтой "адской машиной")
-                                                     <h5>Оксана Беляева</h5>
-                                                 </div>
-                                                 <div class="item">
-                                                     Первый раз принимала участие в велопробеге! Безумно понравилось! Лишний раз доказала самой себе, что сильна духом, и не только))) Огромный привет Ирочке, и всем участникам 20 звена! И конечно же огромная благодарность всем участникам и организаторам! Так держать!!!
-                                                     <h5>Елена Минеева</h5>
-                                                 </div>
+<!-- Историческая справка -->
+<section class="ftco-section">
+  <div class="container-fluid">
+    <div class="row justify-content-center mb-5 pb-3">
+      <div class="col-md-7 heading-section ftco-animate text-center">
+        <h3 class="subheading">Ключевые персонажи и места маршрута</h3>
+        <h2 class="mb-1">Историческая справка</h2>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6 col-lg-3">
+        <div class="package-program ftco-animate">
+          <a href="#" class="img d-flex justify-content-center align-items-center" style="background-image: url({% static 'images/hist-1.jpg' %});">
+            <span>Узнать больше</span>
+          </a>
+          <div class="text mt-3">
+            <h3><a href="#">Фролищи</a></h3>
+            <p>Краткое описание.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3">
+        <div class="package-program ftco-animate">
+          <a href="#" class="img d-flex justify-content-center align-items-center" style="background-image: url({% static 'images/hist-2.jpg' %});">
+            <span>Узнать больше</span>
+          </a>
+          <div class="text mt-3">
+            <h3><a href="#">Нижний Новгород</a></h3>
+            <p>Краткое описание.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3">
+        <div class="package-program ftco-animate">
+          <a href="#" class="img d-flex justify-content-center align-items-center" style="background-image: url({% static 'images/hist-3.jpeg' %});">
+            <span>Узнать больше</span>
+          </a>
+          <div class="text mt-3">
+            <h3><a href="#">Гражданин Минин</a></h3>
+            <p>Краткое описание.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3">
+        <div class="package-program ftco-animate">
+          <a href="#" class="img d-flex justify-content-center align-items-center" style="background-image: url({% static 'images/hist-4.jpg' %});">
+            <span>Узнать больше</span>
+          </a>
+          <div class="text mt-3">
+            <h3><a href="#">Князь Пожарский</a></h3>
+            <p>Краткое описание.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row mt-4 justify-content-center ftco-animate">
+      <div class="col-md-4 text-center">
+        <a href="#" class="btn-custom py-4">Узнать больше <span class="ion-ios-arrow-down ml-2"></span></a>
+      </div>
+    </div>
+  </div>
+</section>
 
-                                             </div>
-                                             <!-- Carousel indicators -->
-                                             <ol class="carousel-indicators">
-                                                 <li data-target="#quote-slider" data-slide-to="0" class="active"></li>
-                                                 <li data-target="#quote-slider" data-slide-to="1"></li>
-                                                 <li data-target="#quote-slider" data-slide-to="2"></li>
-                                             </ol>
-                                         </div>
-                                     </div>
-                                 </div>
-                             </div>
-                         </article>
-                         <!-- End Article -->
-                     </div>
-                 </div>
-                 <!-- END PAGE | FEATURES -->
+<!-- Стоимость участия -->
+<section class="ftco-section bg-light">
+  <div class="container">
+    <div class="row justify-content-center mb-5 pb-3">
+      <div class="col-md-7 heading-section ftco-animate text-center">
+        <h3 class="subheading">Стоимость участия</h3>
+        <h2 class="mb-1">Варианты</h2>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6 ftco-animate">
+        <div class="block-7">
+          <div class="text-center">
+          <h2 class="heading">Участие без доставки</h2>
+          <span class="price"><sup>руб.</sup> <span class="number">900</span></span>
+          <span class="excerpt d-block">База</span>
+          <a href="#" class="btn btn-primary d-block px-2 py-4 mb-4">Зарегистрироваться</a>
+          
+          <h3 class="heading-2 mb-4">Входит</h3>
+          
+          <ul class="pricing-text">
+            <li>Участие в велопробеге</li>
+            <li>Футболка</li>
+            <li>Обед</li>
+            <li>Проезд на электричке</li>
+          </ul>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 ftco-animate">
+        <div class="block-7">
+          <div class="text-center">
+          <h2 class="heading">Участие с доставкой</h2>
+          <span class="price"><sup>руб.</sup> <span class="number">1500</span></span>
+          <span class="excerpt d-block">Включена доставка</span>
+          <a href="#" class="btn btn-primary d-block px-3 py-4 mb-4">Зарегистрироваться</a>
+          
+          <h3 class="heading-2 mb-4">Входит</h3>
+          
+          <ul class="pricing-text">
+            <li>Всё из базы</li>
+            <li>++ Доставка велосипеда из Фролищ до Нижнего Новгорода</li>
+          </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-                 {% include 'shared/foundation.html' %}
+<!-- Отзывы участников -->
+<section class="ftco-section testimony-section">
+  <div class="container">
+    <div class="row justify-content-center mb-5 pb-3">
+      <div class="col-md-7 heading-section ftco-animate text-center">
+        <h3 class="subheading">Отзывы</h3>
+        <h2 class="mb-1">участников</h2>
+      </div>
+    </div>
+    <div class="row ftco-animate">
+      <div class="col-md-12">
+        <div class="carousel-testimony owl-carousel">
+          <div class="item">
+            <div class="testimony-wrap p-4 pb-5">
+              <div class="text">
+                <p class="mb-4 pb-1 pl-4 line">Огромное спасибо всем!! Покорило внимание и забота друг о друге! Отдельное спасибо Илье, звеньевому 21 звена, - классно ехали, ровно и быстро почти всегда! А ещё спасибо ребятам, которые помогли на "финишной прямой" по городу - здорово мчались с вами!!!</p>
 
-                 <!-- PAGE | GALLERY -->
-                 <div class="pages page-work" id="page-gallery">
-                     <div class="container">
-                         <!-- Header -->
-                         <header>
-                             <h4 class="line-divider">Галерея</h4>
-                             <h1>Галерея</h1>
-                             <!-- Short desciption about Work in general -->
-                             <div class="row">
-                                 <div class="span8 offset2">
-                                     <p>
-                                         Здесь представлены фото и видео с предыдущих велопробегов. Большой вклад в подготовку галереи вложили его участники, передавая фотографии и видео в штаб организаторов.
-                                     </p>
-                                 </div>
-                             </div>
-                             
-                             <!-- Sub menu -->
-             <!-- 
-             Params: 
-                 plugin-filter: Defines links for filtering.
-             -->
-             <nav class="submenu">
-                 <ul>
-                     <li>
-                         <a href="#" class="plugin-filter active" data-filter="2014">Все</a>
-                     </li>
-                     <li>
-                         <a href="#" class="plugin-filter" data-filter="2006">2006</a>
-                     </li>
-                     <li>
-                         <a href="#" class="plugin-filter" data-filter="2007">2007</a>
-                     </li>
-                     <li>
-                         <a href="#" class="plugin-filter" data-filter="2008">2008</a>
-                     </li>
-                     <li>
-                         <a href="#" class="plugin-filter" data-filter="2009">2009</a>
-                     </li>
-                    <li>
-                         <a href="#" class="plugin-filter" data-filter="2010">2010</a>
-                     </li>
-                    <li>
-                         <a href="#" class="plugin-filter" data-filter="2011">2011</a>
-                     </li>
-                    <li>
-                         <a href="#" class="plugin-filter" data-filter="2012">2012</a>
-                     </li>
-                    <li>
-                         <a href="#" class="plugin-filter" data-filter="2013">2013</a>
-                     </li>
-                    <li>
-                         <a href="#" class="plugin-filter" data-filter="2014">2014</a>
-                     </li>
-                 </ul>
-             </nav>
-         </header>
-         <!-- End Header -->
-         
-         <!-- Article -->
-         <article>
-             <!-- Portfolio items
-                 Params: 
-                     plugin-filter-elements: Defines items for filtering, each item has class which defines filter value.
-                     portfolio-items: Customise portfolio items for hover effect.
-                 -->
-                 <ul class="thumbnails plugin-filter-elements portfolio-items">
-                     <li class="span4 mix 2006">
-                         <a href="#pages/portfolio/project_1.html" data-destination="portfolio-items" data-insert="before">
-                             <!-- Portfolio image -->
-                             <img src="{% static '/images/works/01.jpg' %}" alt="Treble">
-                             
-                             <!-- Portfolio name, activated on hover -->
-                             <div class="portfolio-overlay">
-                                 <h4>2007</h4>
-                             </div>
-                         </a>
-                     </li>
-                     <li class="span4 mix 2012">
-                         <a href="#pages/portfolio/project_2.html" data-destination="portfolio-items" data-insert="before">
-                             <img src="{% static '/images/works/02.jpg' %}" alt="Treble">
-                             <div class="portfolio-overlay">
-                                 <h4>2008</h4>
-                             </div>
-                         </a>
-                     </li>
-                     <li class="span4 mix start">
-                         <a href="#pages/portfolio/project_3.html" data-destination="portfolio-items" data-insert="before">
-                             <img src="{% static '/images/works/03.jpg' %}" alt="Treble">
-                             <div class="portfolio-overlay">
-                                 <h4>2009</h4>
-                             </div>
-                         </a>
-                     </li>
-                     <li class="span4 mix 2007">
-                         <a href="#" data-destination="portfolio-items" data-insert="before">
-                             <img src="{% static '/images/works/10.jpg' %}" alt="Treble">
-                             <div class="portfolio-overlay">
-                                 <h4>2010</h4>
-                             </div>
-                         </a>
-                     </li>
-                     <li class="span4 mix 2008">
-                         <a href="#pages/portfolio/project_5.html" data-destination="portfolio-items" data-insert="before">
-                             <img src="{% static '/images/works/05.jpg' %}" alt="Treble">
-                             <div class="portfolio-overlay">
-                                 <h4>2011</h4>
-                             </div>
-                         </a>
-                     </li>
-                     <li class="span4 mix 2009">
-                         <a href="#pages/portfolio/project_6.html" data-destination="portfolio-items" data-insert="before">
-                             <img src="{% static '/images/works/06.jpg' %}" alt="Treble">
-                             <div class="portfolio-overlay">
-                                 <h4>2012</h4>
-                             </div>
-                         </a>
-                     </li>
-                     <li class="span4 mix 2010">
-                         <a href="#pages/portfolio/project_7.html" data-destination="portfolio-items" data-insert="before">
-                             <img src="{% static '/images/works/07.jpg' %}" alt="Treble">
-                             <div class="portfolio-overlay">
-                                 <h4>2013</h4>
-                             </div>
-                         </a>
-                     </li>
-                     <li class="span4 mix 2011">
-                         <a href="#pages/portfolio/project_8.html" data-destination="portfolio-items" data-insert="before">
-                             <img src="{% static '/images/works/08.jpg' %}" alt="Treble">
-                             <div class="portfolio-overlay">
-                                 <h4>Регистрация</h4>
-                             </div>
-                         </a>
-                     </li>
-                     <li class="span4 mix 2012">
-                         <a href="#pages/portfolio/project_9.html" data-destination="portfolio-items" data-insert="before">
-                             <img src="{% static '/images/works/09.jpg' %}" alt="Treble">
-                             <div class="portfolio-overlay">
-                                 <h4>Движение</h4>
-                             </div>
-                         </a>
-                     </li>
-                 </ul>
-             </article>
-             <!-- End Article -->
-             
-             <!-- 
-             <footer>
-                 <div class="show-more-cube">
-                  <a href="#readmore.html" data-destination="plugin-filter-elements" data-insert="appendTo" data-action="remove">
-                     <span>Показать<br/>все</span>
-                 </a>
-             </div>
-         </footer>
-    -->
-     </div>
- </div>
- <!-- END PAGE | WORK -->
+                <div class="d-flex align-items-center">
+                  <!-- <div class="user-img" style="background-image: url(images/person_1.jpg)"> -->
+                  <div class="user-img">
+                    <span class="quote d-flex align-items-center justify-content-center">
+                      <i class="icon-quote-left"></i>
+                    </span>
+                  </div>
+                  <div class="ml-4">
+                    <p class="name">Ксения Назаровская</p>
+                    <span class="position">Участница велопробега</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="item">
+            <div class="testimony-wrap p-4 pb-5">
+              <div class="text">
+                <p class="mb-4 pb-1 pl-4 line">Огромное спасибо организаторам этого пробега! я хоть и ехал почти в конце но мне всё понравилось!) Жду подобных мероприятий!!!</p>
 
- {% include 'shared/partners.html' %}
+                <div class="d-flex align-items-center">
+                  <div class="user-img" style="background-image: url(images/person_2.jpg)">
+                    <span class="quote d-flex align-items-center justify-content-center">
+                      <i class="icon-quote-left"></i>
+                    </span>
+                  </div>
+                  <div class="ml-4">
+                    <p class="name">Роман Ерышев</p>
+                    <span class="position">Участник велопробега</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="item">
+            <div class="testimony-wrap p-4 pb-5">
+              <div class="text">
+                <p class="mb-4 pb-1 pl-4 line">Всем огромное спасибо! пробег был офигенный, нам очень понравилось всё! Вело-дзержинск хочет уже повторения) мега-круто было!</p>
+
+                <div class="d-flex align-items-center">
+                  <div class="user-img" style="background-image: url(images/person_3.jpg)">
+                    <span class="quote d-flex align-items-center justify-content-center">
+                      <i class="icon-quote-left"></i>
+                    </span>
+                  </div>
+                  <div class="ml-4">
+                    <p class="name">Никита Дмитриев</p>
+                    <span class="position">Участник велопробега</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="item">
+            <div class="testimony-wrap p-4 pb-5">
+              <div class="text">
+                <p class="mb-4 pb-1 pl-4 line">Спасибо всем огромное за такое мега позитивное мероприятие! Было очень круто и здорово во всех смыслах слова)Спасибо 22 звену за отличное настроение и особенно всем тем, кто помогал справится с моей желтой "адской машиной")</p>
+
+                <div class="d-flex align-items-center">
+                  <div class="user-img" style="background-image: url(images/person_1.jpg)">
+                    <span class="quote d-flex align-items-center justify-content-center">
+                      <i class="icon-quote-left"></i>
+                    </span>
+                  </div>
+                  <div class="ml-4">
+                    <p class="name">Оксана Беляева</p>
+                    <span class="position">Участница велопробега</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="item">
+            <div class="testimony-wrap p-4 pb-5">
+              <div class="text">
+                <p class="mb-4 pb-1 pl-4 line">Первый раз принимала участие в велопробеге! Безумно понравилось! Лишний раз доказала самой себе, что сильна духом, и не только))) Огромный привет Ирочке, и всем участникам 20 звена! И конечно же огромная благодарность всем участникам и организаторам! Так держать!!!</p>
+
+                <div class="d-flex align-items-center">
+                  <div class="user-img" style="background-image: url(images/person_2.jpg)">
+                    <span class="quote d-flex align-items-center justify-content-center">
+                      <i class="icon-quote-left"></i>
+                    </span>
+                  </div>
+                  <div class="ml-4">
+                    <p class="name">Елена Минеева</p>
+                    <span class="position">Участница велопробега</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Блог -->
+<section class="ftco-section bg-light">
+  <div class="container">
+    <div class="row justify-content-center mb-5 pb-3">
+      <div class="col-md-7 heading-section ftco-animate text-center">
+        <h3 class="subheading">Блог проекта</h3>
+        <h2 class="mb-1">Новости</h2>
+      </div>
+    </div>
+    <div class="row d-flex">
+      <div class="col-md-4 d-flex ftco-animate">
+        <div class="blog-entry justify-content-end">
+          <a href="blog-single.html" class="block-20" style="background-image: url({% static 'images/news-1.jpg' %});">
+          </a>
+          <div class="text p-4 float-right d-block">
+            <div class="meta">
+              <div><a href="#">31.05.2022</a></div>
+              <div><a href="#">Admin</a></div>
+              <div><a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a></div>
+            </div>
+            <h3 class="heading mt-2"><a href="#">Название статьи</a></h3>
+            <p>Краткое содержание статьи.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 d-flex ftco-animate">
+        <div class="blog-entry justify-content-end">
+          <a href="blog-single.html" class="block-20" style="background-image: url({% static 'images/news-2.jpg' %});">
+          </a>
+          <div class="text p-4 float-right d-block">
+            <div class="meta">
+              <div><a href="#">31.05.2022</a></div>
+              <div><a href="#">Admin</a></div>
+              <div><a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a></div>
+            </div>
+            <h3 class="heading mt-2"><a href="#">Название статьи</a></h3>
+            <p>Краткое содержание статьи.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 d-flex ftco-animate">
+        <div class="blog-entry">
+          <a href="blog-single.html" class="block-20" style="background-image: url({% static 'images/news-3.jpg' %});">
+          </a>
+          <div class="text p-4 float-right d-block">
+            <div class="meta">
+              <div><a href="#">31.05.2022</a></div>
+              <div><a href="#">Admin</a></div>
+              <div><a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a></div>
+            </div>
+            <h3 class="heading mt-2"><a href="#">Название статьи</a></h3>
+            <p>Краткое содержание статьи.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% include "shared/registration_form.html" %}
+
+<!-- Галерея -->
+<section class="ftco-gallery">
+  <div class="container-wrap">
+    <div class="row no-gutters">
+      <div class="col-md-3 ftco-animate">
+        <div class="gallery ftco-gradient d-flex justify-content-center align-items-center">
+          <div class="row justify-content-center">
+            <div class="col-md-12 heading-section ftco-animate text-center">
+              <h3 class="subheading">Фотогалерея</h3>
+              <h2 class="mb-1">Велопробег</h2>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 ftco-animate">
+        <a href="{% static 'images/works/2006/2.jpg' %}" class="gallery image-popup img d-flex align-items-center" style="background-image: url({% static 'images/works/2006/2.jpg' %});">
+          <div class="icon mb-4 d-flex align-items-center justify-content-center">
+            <span class="icon-instagram"></span>
+          </div>
+        </a>
+      </div>
+      <div class="col-md-3 ftco-animate">
+        <a href="{% static 'images/works/2007/3.jpg' %}" class="gallery image-popup img d-flex align-items-center" style="background-image: url({% static 'images/works/2007/3.jpg' %});">
+          <div class="icon mb-4 d-flex align-items-center justify-content-center">
+            <span class="icon-instagram"></span>
+          </div>
+        </a>
+      </div>
+      <div class="col-md-3 ftco-animate">
+        <a href="{% static 'images/works/2008/7.jpg' %}" class="gallery image-popup img d-flex align-items-center" style="background-image: url({% static 'images/works/2008/7.jpg' %});">
+          <div class="icon mb-4 d-flex align-items-center justify-content-center">
+            <span class="icon-instagram"></span>
+          </div>
+        </a>
+      </div>
+      <div class="col-md-3 ftco-animate">
+        <a href="{% static 'images/works/2009/8.jpg' %}" class="gallery image-popup img d-flex align-items-center" style="background-image: url({% static 'images/works/2009/8.jpg' %});">
+          <div class="icon mb-4 d-flex align-items-center justify-content-center">
+            <span class="icon-instagram"></span>
+          </div>
+        </a>
+      </div>
+      <div class="col-md-3 ftco-animate">
+        <a href="{% static 'images/works/2010/5.jpg' %}" class="gallery image-popup img d-flex align-items-center" style="background-image: url({% static 'images/works/2010/5.jpg' %});">
+          <div class="icon mb-4 d-flex align-items-center justify-content-center">
+            <span class="icon-instagram"></span>
+          </div>
+        </a>
+      </div>
+      <div class="col-md-3 ftco-animate">
+        <a href="{% static 'images/works/2011/12.jpg' %}" class="gallery image-popup img d-flex align-items-center" style="background-image: url({% static 'images/works/2011/12.jpg' %});">
+          <div class="icon mb-4 d-flex align-items-center justify-content-center">
+            <span class="icon-instagram"></span>
+          </div>
+        </a>
+      </div>
+      <div class="col-md-3 ftco-animate">
+        <a href="{% static 'images/works/2014/2.jpg' %}" class="gallery image-popup img d-flex align-items-center" style="background-image: url({% static 'images/works/2014/2.jpg' %});">
+          <div class="icon mb-4 d-flex align-items-center justify-content-center">
+            <span class="icon-instagram"></span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% include "shared/partners.html" %}
+
 {% endblock %}

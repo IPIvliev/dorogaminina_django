@@ -1,10 +1,15 @@
 from django import forms
+from home.models import User
 
-class SignUpForm(forms.Form):
-  lastname = forms.CharField(widget=forms.TextInput(attrs={"class":"span4", 'placeholder': 'Фамилия'}), label="", required=True)
-  name = forms.CharField(widget=forms.TextInput(attrs={"class":"span4", 'placeholder': 'Имя'}), label="", required=True)
-  otchestvo = forms.CharField(widget=forms.TextInput(attrs={"class":"span4", 'placeholder': 'Отчество'}), label="")
-  phone = forms.CharField(widget=forms.TextInput(attrs={"class":"span12", 'placeholder': 'Номер телефона'}), label="", required=True)
+class SignUpForm(forms.ModelForm):
+  lastname = forms.CharField(widget=forms.TextInput(attrs={"class":"form-control", 'placeholder': 'Фамилия'}), label="", required=True)
+  name = forms.CharField(widget=forms.TextInput(attrs={"class":"form-control", 'placeholder': 'Имя'}), label="", required=True)
+  middlename = forms.CharField(widget=forms.TextInput(attrs={"class":"form-control", 'placeholder': 'Отчество'}), label="")
+  phone = forms.CharField(widget=forms.TextInput(attrs={"class":"form-control", 'placeholder': 'Номер телефона'}), label="", required=True)
+
+  class Meta: 
+    model = User 
+    fields =('name', 'lastname', 'middlename', 'phone') 
 
 class LoginForm(forms.Form):
   id = forms.IntegerField(widget=forms.NumberInput(attrs={"class":"span3", 'placeholder': 'Ваш ID'}), label="", required=True)

@@ -1,5 +1,67 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
-  <h1>Контакты</h1>
+<section class="hero-wrap js-fullheight" style="background-image: url({% static 'images/bg_6.jpg' %});">
+  <div class="overlay"></div>
+  <div class="container">
+    <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center">
+      <div class="col-md-9 ftco-animate text-center">
+        <h1 class="mb-3 bread">Контакты</h1>
+        <p class="breadcrumbs"><span class="mr-2"><a href="index.html">Главная</a></span> <span>Контакты</span></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="ftco-section contact-section">
+  <div class="container">
+    <div class="row block-9">
+      <div class="col-md-4 contact-info ftco-animate bg-light p-4">
+        <div class="row">
+          <div class="col-md-12 mb-4">
+            <h2 class="h4">Контактная информация</h2>
+          </div>
+          <div class="col-md-12 mb-3">
+            <p><span>Адрес:</span> г. Нижний Новгород, ул. ....</p>
+          </div>
+          <div class="col-md-12 mb-3">
+            <p><span>Телефон:</span> <a href="tel://1234567920">+7 999 999 99-99</a></p>
+          </div>
+          <div class="col-md-12 mb-3">
+            <p><span>Email:</span> <a href="mailto:info@yandex.ru">info@yandex.ru</a></p>
+          </div>
+          <div class="col-md-12 mb-3">
+            <p><span>Website:</span> <a href="#">www.дорогаминина.рф</a></p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-1"></div>
+      <div class="col-md-6 ftco-animate">
+        <form action="#" class="contact-form">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <input type="text" class="form-control" placeholder="Ваше имя">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <input type="text" class="form-control" placeholder="Ваша почта">
+              </div>
+              </div>
+          </div>
+          <div class="form-group">
+            <textarea name="" id="" cols="30" rows="7" class="form-control" placeholder="Сообщение"></textarea>
+          </div>
+          <div class="form-group">
+            <input type="submit" value="Отправить" class="btn btn-primary py-3 px-5">
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- <div id="map" class="map"></div> -->
 {% endblock %}
