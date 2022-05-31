@@ -2,7 +2,7 @@
 <!-- PAGE | Registration -->
     <div class="pages black-bg white page-contact" id="page-registration">
       <div class="container">
-          {% if user.is_authenticated %}
+          {% if not request.user.is_authenticated %}
           <!-- Header -->
           <header>
               <h4 class="line-divider">Регистрация на велопробег</h4>

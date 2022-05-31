@@ -44,8 +44,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'phonenumber_field',
-    'phone_auth',
     'home'
 ]
 
@@ -90,15 +88,6 @@ DATABASES = {
     }
 }
 
-AUTHENTICATION_BACKENDS = [
-# Needed to login by username in Django admin, regardless of `django-phone-auth`
-'django.contrib.auth.backends.ModelBackend',
-# `django-phone-auth` specific authentication methods, such as login by phone/email/username.
-'phone_auth.backend.CustomAuthBackend',
-]
-
-AUTHENTICATION_METHODS = {'phone'}
-
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
 
@@ -139,3 +128,7 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# AUTH
+AUTH_USER_MODEL = 'home.User'
+AUTHENTICATION_BACKENDS = ('home.backends.AuthBackend',)

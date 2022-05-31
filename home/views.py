@@ -1,10 +1,10 @@
 from django.shortcuts import render
 from .forms import SignUpForm, LoginForm
-
-from django.dispatch import receiver
-from phone_auth.signals import verify_phone
  
 def index(request):
+  if request.method == 'POST': 
+    pass
+  else:
     return render(request, "home/index.html", {
       'title': "Велопробег Дорога Минина 2022",
       'registrationform': SignUpForm,
