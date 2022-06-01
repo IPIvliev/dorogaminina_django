@@ -1,0 +1,43 @@
+{% load static %}
+
+<section class="home-slider js-fullheight owl-carousel ftco-degree-bottom">
+  <div class="slider-item js-fullheight" style="background-image: url('{% static 'images/bg_4.jpg' %}');">'
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row slider-text js-fullheight justify-content-center align-items-center" data-scrollax-parent="true">
+
+        <div class="col-sm-12 ftco-animate text-center">
+          <h1 class="mb-4">{{title|safe}}</h1>
+          <h2 class="subheading">Экспедиция<br> "Русская Цивилизация"</h2>
+          {% if not request.user.is_authenticated %}
+            <a href="#registration" class="btn-custom py-4" style="margin-top: 50px;">Зарегистрироваться</a>
+            <a href="/login.html" class="btn-custom py-4" style="margin-top: 50px;">Войти</a>
+          {% else %}
+            <a href="/login.html" class="btn-custom py-4" style="margin-top: 50px;">Войти</a>
+          {% endif %}
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="slider-item js-fullheight" style="background-image: url({% static 'images/bg_5.jpg' %});">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row slider-text js-fullheight justify-content-center align-items-center" data-scrollax-parent="true">
+
+        <div class="col-sm-12 ftco-animate text-center">
+          <h1 class="mb-4">Велопробег<br> "Дорога Минина - 2022"</h1>
+          <h2 class="subheading">Экспедиция<br> "Русская Цивилизация"</h2>
+          {% if not request.user.is_authenticated %}
+            <a href="#registration" class="btn-custom py-4" style="margin-top: 50px;">Зарегистрироваться</a>
+            <a href="/login.html" class="btn-custom py-4" style="margin-top: 50px;">Войти</a>
+          {% else %}
+            <a href="/login.html" class="btn-custom py-4" style="margin-top: 50px;">Войти</a>
+          {% endif %}
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section> 

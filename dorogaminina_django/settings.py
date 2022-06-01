@@ -23,6 +23,9 @@ STATICFILES_DIRS = [
     STATICFILE_DIR,
 ]
 
+MEDIA_ROOT= os.path.join(BASE_DIR, 'media/')
+MEDIA_URL= "/media/"
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
@@ -44,7 +47,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'home'
+    'robokassa',
+    'home',
+    'events'
 ]
 
 MIDDLEWARE = [
@@ -132,3 +137,13 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # AUTH
 AUTH_USER_MODEL = 'home.User'
 AUTHENTICATION_BACKENDS = ('home.backends.AuthBackend',)
+
+EMAIL_HOST = 'smtp.yandex.ru'
+EMAIL_PORT = 465
+EMAIL_HOST_USER = "k.belov@3dresin.ru"
+EMAIL_HOST_PASSWORD = "Odergies1"
+EMAIL_USE_TLS = False
+EMAIL_USE_SSL = True
+
+ROBOKASSA_LOGIN = 'dorogaminina'
+ROBOKASSA_PASSWORD1 = 'OdergiesFNK1'

@@ -4,37 +4,7 @@
 {% block content %}
 
 <!-- Заголовок -->
-<section class="home-slider js-fullheight owl-carousel ftco-degree-bottom">
-  <div class="slider-item js-fullheight" style="background-image: url('{% static 'images/bg_4.jpg' %}');">'
-    <div class="overlay"></div>
-    <div class="container">
-      <div class="row slider-text js-fullheight justify-content-center align-items-center" data-scrollax-parent="true">
-
-        <div class="col-sm-12 ftco-animate text-center">
-          <h1 class="mb-4">Велопробег<br> "Дорога Минина - 2022"</h1>
-          <h2 class="subheading">Экспедиция<br> "Русская Цивилизация"</h2>
-          <a href="#registration" class="btn-custom py-4" style="margin-top: 50px;">Зарегистрироваться</a>
-        </div>
-
-      </div>
-    </div>
-  </div>
-
-  <div class="slider-item js-fullheight" style="background-image: url({% static 'images/bg_5.jpg' %});">
-    <div class="overlay"></div>
-    <div class="container">
-      <div class="row slider-text js-fullheight justify-content-center align-items-center" data-scrollax-parent="true">
-
-        <div class="col-sm-12 ftco-animate text-center">
-          <h1 class="mb-4">Велопробег<br> "Дорога Минина - 2022"</h1>
-          <h2 class="subheading">Экспедиция<br> "Русская Цивилизация"</h2>
-          <a href="#registration" class="btn-custom py-4" style="margin-top: 50px;">Зарегистрироваться</a>
-        </div>
-
-      </div>
-    </div>
-  </div>
-</section> 
+{% include "shared/home_slider.html" %}
 
 <!-- Описание -->
 <section class="ftco-section-services ftco-degree">
@@ -199,7 +169,7 @@
       </div>
       <div class="col-lg-3 d-flex">
         <div class="coach align-items-stretch">
-          <div class="img" style="background-image: url(images/org-3.jpg);"></div>
+          <div class="img" style="background-image: url({% static 'images/org-2.jpg' %});"></div>
           <div class="text bg-white p-4 ftco-animate">
             <span class="subheading">Директор ООО "Контакт"</span>
             <h3><a href="#">Максим Толкуев</a></h3>
@@ -215,7 +185,7 @@
       </div>
       <div class="col-lg-3 d-flex">
         <div class="coach d-md-flex flex-column-reverse align-items-stretch">
-          <div class="img" style="background-image: url(images/org-4.jpg);"></div>
+          <div class="img" style="background-image: url({% static 'images/org-2.jpg' %});"></div>
           <div class="text bg-white p-4 ftco-animate">
             <span class="subheading">Руководитель орггруппы</span>
             <h3><a href="#">Никита Груздев</a></h3>
@@ -386,7 +356,7 @@
                 <p class="mb-4 pb-1 pl-4 line">Огромное спасибо организаторам этого пробега! я хоть и ехал почти в конце но мне всё понравилось!) Жду подобных мероприятий!!!</p>
 
                 <div class="d-flex align-items-center">
-                  <div class="user-img" style="background-image: url(images/person_2.jpg)">
+                  <div class="user-img">
                     <span class="quote d-flex align-items-center justify-content-center">
                       <i class="icon-quote-left"></i>
                     </span>
@@ -405,7 +375,7 @@
                 <p class="mb-4 pb-1 pl-4 line">Всем огромное спасибо! пробег был офигенный, нам очень понравилось всё! Вело-дзержинск хочет уже повторения) мега-круто было!</p>
 
                 <div class="d-flex align-items-center">
-                  <div class="user-img" style="background-image: url(images/person_3.jpg)">
+                  <div class="user-img">
                     <span class="quote d-flex align-items-center justify-content-center">
                       <i class="icon-quote-left"></i>
                     </span>
@@ -424,7 +394,7 @@
                 <p class="mb-4 pb-1 pl-4 line">Спасибо всем огромное за такое мега позитивное мероприятие! Было очень круто и здорово во всех смыслах слова)Спасибо 22 звену за отличное настроение и особенно всем тем, кто помогал справится с моей желтой "адской машиной")</p>
 
                 <div class="d-flex align-items-center">
-                  <div class="user-img" style="background-image: url(images/person_1.jpg)">
+                  <div class="user-img">
                     <span class="quote d-flex align-items-center justify-content-center">
                       <i class="icon-quote-left"></i>
                     </span>
@@ -443,7 +413,7 @@
                 <p class="mb-4 pb-1 pl-4 line">Первый раз принимала участие в велопробеге! Безумно понравилось! Лишний раз доказала самой себе, что сильна духом, и не только))) Огромный привет Ирочке, и всем участникам 20 звена! И конечно же огромная благодарность всем участникам и организаторам! Так держать!!!</p>
 
                 <div class="d-flex align-items-center">
-                  <div class="user-img" style="background-image: url(images/person_2.jpg)">
+                  <div class="user-img">
                     <span class="quote d-flex align-items-center justify-content-center">
                       <i class="icon-quote-left"></i>
                     </span>

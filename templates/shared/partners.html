@@ -11,51 +11,22 @@
     <div class="row ftco-animate">
       <div class="col-md-12">
         <div class="carousel-testimony owl-carousel">
-          <div class="item">
-            <div class="testimony-wrap p-4 pb-5">
-              <div class="text">
-                <div class="d-flex align-items-center">
-                  <div>
-                    <img src="{% static 'images/partners/velo_nn.jpg' %}">
-                  </div>
-                  <div class="ml-4">
-                    <p class="name">Вело-НН</p>
-                    <span class="position">Велоклуб</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="item">
-            <div class="testimony-wrap p-4 pb-5">
-              <div class="text">
-                <div class="d-flex align-items-center">
-                  <div>
-                    <img src="{% static 'images/partners/nnov.png' %}">
-                  </div>
-                  <div class="ml-4">
-                    <p class="name">Правительство Нижегородской области</p>
-                    <span class="position"></span>
+          {% for partner in partners %}
+            <div class="item">
+              <div class="testimony-wrap p-4 pb-5">
+                <div class="text">
+                  <div class="d-flex align-items-center">
+                    <div>
+                      <a href="{{ partner.partner_link }}" target="_blank"><img src="{{ partner.partner_logo.url }}"></a>
+                    </div>
+                    <div class="ml-4">
+                      <p class="name">{{partner.partner_name}}</p>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-          <div class="item">
-            <div class="testimony-wrap p-4 pb-5">
-              <div class="text">
-                <div class="d-flex align-items-center">
-                  <div>
-                    <img src="{% static 'images/partners/lukoil.jpg' %}">
-                  </div>
-                  <div class="ml-4">
-                    <p class="name">Лукойл</p>
-                    <span class="position">Компания</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+          {% endfor %}
         </div>
       </div>
     </div>

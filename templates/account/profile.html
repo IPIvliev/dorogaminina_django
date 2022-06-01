@@ -17,19 +17,39 @@
   <div class="container">
     <div class="row">
       <div class="col-lg-8 ftco-animate">
-        <h2 class="mb-3">Young Women Doing Abdominal</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis, eius mollitia suscipit, quisquam doloremque distinctio perferendis et doloribus unde architecto optio laboriosam porro adipisci sapiente officiis nemo accusamus ad praesentium? Esse minima nisi et. Dolore perferendis, enim praesentium omnis, iste doloremque quia officia optio deserunt molestiae voluptates soluta architecto tempora.</p>
-        <p>
-          <img src="images/image_1.jpg" alt="" class="img-fluid">
-        </p>
+        <h2 class="mb-3">Панель управления</h2>
+        {% if request.user.is_authenticated %}
+          Пользователь авторизован
+        {% else %}
+          Пользователь не авторизован
+        {% endif %}
+        <p>User ID: {{ request.user.id }}</p>
+        <p>Username: {{ request.user.username }}</p>
+        <p>Phone: {{ request.user.phone }}</p>
+        <p>Password: {{ request.user.more }}</p>
+        <hr>
+        {% if order.active == True %}
+          <p>Вы оплатили участие в мероприятии {{ event.event_name }}.</p>
+        {% else %}
+          <a href="?delivery=true" class="btn-custom py-4" style="text-align: center">Включить доставку</a>
+          
+          <a href="?delivery=false" class="btn-custom py-4" style="text-align: center; margin-top: 10px;">Не включать доставку</a>
+          
+          <hr>
+          <p>Стоимость участия в мероприятии {{ event.event_name }} составляет {{ order.price }} руб. Вы можете оплатить участие через сервис Робокасса нажав на кнопку "Оплатить".</p>
+          <form action="{{ price_form.target }}" method="POST" class="ftco-animate">
+            <p>{{ price_form.as_p }}</p>
+            <input type="submit" value="Оплатить" class="btn-custom " style="text-align: center">
+          </form>
+        {% endif %}
 
       </div> <!-- .col-md-8 -->
       <div class="col-lg-4 sidebar ftco-animate">
         <div class="sidebar-box ftco-animate">
           <div class="categories">
             <h3 class="heading-2">Меню</h3>
-            <li><a href="#">Профайл </a></li>
-            <li><a href="#">Выход </a></li>
+            <li><a href="/profile.html">Профайл </a></li>
+            <li><a href="/logout.html">Выход </a></li>
           </div>
         </div>
 
