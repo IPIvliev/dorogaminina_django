@@ -1,0 +1,19 @@
+
+[Unit]
+Description=gunicorn daemon
+Requires=gunicorn_2.socket
+After=network.target
+
+[Service]
+User=razrus
+Group=www-data
+WorkingDirectory=/home/razrus/dorogaminina_django
+ExecStart=/home/razrus/make3d/virt/bin/gunicorn \
+          --access-logfile - \
+          --workers 3 \
+          --bind unix:/run/gunicorn_2.sock \
+          dorogaminina_django.wsgi:application
+
+[Install]
+WantedBy=multi-user.target
+
