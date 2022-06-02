@@ -31,6 +31,7 @@ urlpatterns = [
   path('admin/', admin.site.urls),
   path('login.html', views.login_form, name='login'),
   path('logout.html', views.logout_form, name='logout'),
+  #path('smsru/', include('smsru.urls'))
   # path('accounts/', include('django.contrib.auth.urls')),
 ]
 

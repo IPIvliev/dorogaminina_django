@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'robokassa',
+    'smsru',
     'home',
     'events'
 ]
@@ -144,6 +145,12 @@ EMAIL_HOST_USER = "k.belov@3dresin.ru"
 EMAIL_HOST_PASSWORD = "Odergies1"
 EMAIL_USE_TLS = False
 EMAIL_USE_SSL = True
+
+SMS_RU = {
+    "API_ID": '377CE569-9C91-53D6-3126-B7A2512E2966', # если указан API ключ, логин и пароль пропускаем
+    "TEST": True, # отправка смс в тестовом режиме, по умолчанию False
+    "SENDER": 'DorogaMinina', # отправитель - необязательно поле
+}
 
 ROBOKASSA_LOGIN = 'dorogaminina'
 ROBOKASSA_PASSWORD1 = 'OdergiesFNK1'

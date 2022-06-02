@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Event, Partner, Order
+from .models import Event, Partner, Order, Place, Merch
 
 @admin.register(Order)
 class OrderAdmin(admin.ModelAdmin):
@@ -12,3 +12,11 @@ class EventAdmin(admin.ModelAdmin):
 @admin.register(Partner)
 class PartnerAdmin(admin.ModelAdmin):
     list_display = ('partner_name',)
+
+@admin.register(Place)
+class MerchAdmin(admin.ModelAdmin):
+    list_display = ('place_name', 'place_event', 'amount', 'active')
+
+@admin.register(Merch)
+class MerchAdmin(admin.ModelAdmin):
+    list_display = ('merch_name', 'size', 'merch_event', 'active')

@@ -19,27 +19,73 @@
       <div class="col-lg-8 ftco-animate">
         <h2 class="mb-3">Панель управления</h2>
         {% if request.user.is_authenticated %}
-          Пользователь авторизован
+          <p>Ваш ID: {{ request.user.id }}</p>
+          <p>ФИО: {{ request.user.lastname }} {{ request.user.username }} {{ request.user.middlename }}</p>
+          <p>Номер телефона: {{ request.user.phone }}</p>
+          <p>Пароль: {{ request.user.more }}</p>
         {% else %}
           Пользователь не авторизован
         {% endif %}
-        <p>User ID: {{ request.user.id }}</p>
-        <p>Username: {{ request.user.username }}</p>
-        <p>Phone: {{ request.user.phone }}</p>
-        <p>Password: {{ request.user.more }}</p>
+
         <hr>
-        {% if order.active == True %}
-          <p>Вы оплатили участие в мероприятии {{ event.event_name }}.</p>
+        {% if order.active == True and order.order_merch == Null %}
+          <div class="alert alert-primary" role="alert">
+            Вы оплатили участие в проекте {{ event.event_name }}  
+          </div>
+          <p>Выберите звено и размер футболки для окончания регистрации.</p>
+          <div class="alert alert-secondary">
+            <div class="col-md-12 appointment">
+              <form method="post">
+                {% csrf_token %}
+                <div class="d-md-flex">
+                  {{finalorderform.order_merch.label}}
+                  {{finalorderform.order_merch}}
+                </div>
+                <br>
+                <div class="d-md-flex">
+                  {{finalorderform.order_place.label}}
+                  {{finalorderform.order_place}}
+                </div>
+                <br>
+                <div class="d-md-flex">
+                  {{finalorderform.comment}}
+                </div>
+                <div class="d-md-flex" style="margin-top: 50px;">
+                  <input type="submit" value="Закончить регистрацию" class="btn btn-primary py-3 px-4 col-md-12">
+                </div>
+              </form>
+            </div>
+          </div>
+        {% elif order.active == True and order.order_merch != Null %}
+        <div class="alert alert-success">
+          Поздравляем! Вы успешно зарегистрировались на мероприятие: {{ event.event_name }}
+        </div>
         {% else %}
-          <a href="?delivery=true" class="btn-custom py-4" style="text-align: center">Включить доставку</a>
-          
-          <a href="?delivery=false" class="btn-custom py-4" style="text-align: center; margin-top: 10px;">Не включать доставку</a>
-          
+        <div class="row">
+          <div class="col-lg-6">
+            <a href="?delivery=true" class="btn-custom py-4" style="text-align: center">Включить доставку</a>
+          </div>
+          <div class="col-lg-6">
+            <a href="?delivery=false" class="btn-custom py-4" style="text-align: center; ">Не включать доставку</a>
+          </div>
+        </div>
           <hr>
-          <p>Стоимость участия в мероприятии {{ event.event_name }} составляет {{ order.price }} руб. Вы можете оплатить участие через сервис Робокасса нажав на кнопку "Оплатить".</p>
-          <form action="{{ price_form.target }}" method="POST" class="ftco-animate">
+          <p>Стоимость участия в мероприятии {{ event.event_name }} составляет <span style="font-weight: bold; color: rgb(85, 8, 8);">{{ order.price }} руб.</span> Вы можете оплатить участие через сервис Робокасса нажав на кнопку "Оплатить".</p>
+          <p>
+            <div class="alert alert-primary" role="alert">
+              Внимание! Доставка 
+              {% if order.price == event.price %}
+                <b>не включена</b>
+              {% else %}
+                <b>включена</b>
+              {% endif %}
+            </div>
+          </p>
+          <form action="{{ price_form.target }}" method="POST" class="ftco-animate ">
             <p>{{ price_form.as_p }}</p>
-            <input type="submit" value="Оплатить" class="btn-custom " style="text-align: center">
+            <div class="form-group">
+              <input type="submit" value="ОПЛАТИТЬ" class="btn btn-primary py-3 px-5 col-lg-12" style="text-align: center">
+            </div>
           </form>
         {% endif %}
 
