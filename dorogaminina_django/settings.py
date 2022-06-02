@@ -33,7 +33,7 @@ MEDIA_URL= "/media/"
 SECRET_KEY = 'django-insecure-6hw98=n0)bbu_ct6mzhop(*896)(*455+7j0maikpqx51dymd5'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = []
 
@@ -87,10 +87,21 @@ WSGI_APPLICATION = 'dorogaminina_django.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+      'ENGINE': 'django.db.backends.postgresql_psycopg2',
+      'NAME': 'dorogaminina',
+      'USER' : 'razrus',
+      'PASSWORD' : 'Huteras52',
+      'HOST' : '127.0.0.1',
+      'PORT' : '5432',
     }
 }
 
@@ -154,3 +165,22 @@ SMS_RU = {
 
 ROBOKASSA_LOGIN = 'dorogaminina'
 ROBOKASSA_PASSWORD1 = 'OdergiesFNK1'
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'file': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': 'debug.log',
+        },
+    },
+    'loggers': {
+        'news': {
+            'handlers': ['file'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+    },
+}
