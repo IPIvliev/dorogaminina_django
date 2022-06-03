@@ -5,8 +5,8 @@ server {
 
 server {
     listen 443 ssl;
-    ssl_certificate ssl/make-3d.cert;
-    ssl_certificate_key ssl/make-3d.key;
+    ssl_certificate ssl/dorogaminina.cert;
+    ssl_certificate_key ssl/dorogaminina.key;
     server_name www.xn--80aahdwa0ajbdax.xn--p1ai;
     return 301 https://xn--80aahdwa0ajbdax.xn--p1ai$request_uri;
 }
@@ -18,8 +18,8 @@ server {
     ssl on;
     ssl_protocols TLSv1.2;
 
-    ssl_certificate      ssl/make-3d.cert;
-    ssl_certificate_key  ssl/make-3d.key;
+    ssl_certificate      ssl/dorogaminina.cert;
+    ssl_certificate_key  ssl/dorogaminina.key;
 
     location = /favicon.ico { access_log off; log_not_found off; }
     location /static/ {
@@ -32,7 +32,7 @@ server {
 
     location / {
         include proxy_params;
-        proxy_pass http://unix:/run/gunicorn.sock;
+        proxy_pass http://unix:/run/gunicorn_2.sock;
     }
 }
 
