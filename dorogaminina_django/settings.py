@@ -18,11 +18,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 TEMPLATE_DIR = os.path.join(BASE_DIR, "templates")
 STATICFILE_DIR = os.path.join(BASE_DIR, 'static/')
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+# STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
-# STATICFILES_DIRS = [
-#     STATICFILE_DIR,
-# ]
+STATICFILES_DIRS = [
+    STATICFILE_DIR,
+]
 
 MEDIA_ROOT= os.path.join(BASE_DIR, 'media/')
 MEDIA_URL= "/media/"
@@ -34,9 +34,9 @@ MEDIA_URL= "/media/"
 SECRET_KEY = 'django-insecure-6hw98=n0)bbu_ct6mzhop(*896)(*455+7j0maikpqx51dymd5'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['xn--80aahdwa0ajbdax.xn--p1ai', '81.177.165.238']
+ALLOWED_HOSTS = ['xn--80aahdwa0ajbdax.xn--p1ai', '81.177.165.238', '*']
 
 
 # Application definition
@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'robokassa',
     'smsru',
+    'blog',
     'home',
     'events'
 ]
@@ -99,7 +100,7 @@ DATABASES = {
     'default': {
       'ENGINE': 'django.db.backends.postgresql_psycopg2',
       'NAME': 'dorogaminina',
-      'USER' : 'razrus',
+      'USER' : 'postgres',
       'PASSWORD' : 'Huteras52',
       'HOST' : '127.0.0.1',
       'PORT' : '5432',
