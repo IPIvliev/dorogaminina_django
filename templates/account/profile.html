@@ -23,6 +23,12 @@
           <p>ФИО: {{ request.user.lastname }} {{ request.user.username }} {{ request.user.middlename }}</p>
           <p>Номер телефона: {{ request.user.phone }}</p>
           <p>Пароль: {{ request.user.more }}</p>
+          {% if order.order_place %}
+            <p>Звено: {{ order.order_place }}</p>
+          {% endif %}
+          {% if order.order_merch %}
+            <p>Футболка: {{ order.order_merch }}</p>
+          {% endif %}
         {% else %}
           Пользователь не авторизован
         {% endif %}
@@ -61,26 +67,29 @@
           Поздравляем! Вы успешно зарегистрировались на мероприятие: {{ event.event_name }}
         </div>
         {% else %}
-        <div class="row">
-          <div class="col-lg-6">
-            <a href="?delivery=true" class="btn-custom py-4" style="text-align: center">Включить доставку</a>
-          </div>
-          <div class="col-lg-6">
-            <a href="?delivery=false" class="btn-custom py-4" style="text-align: center; ">Не включать доставку</a>
-          </div>
-        </div>
-          <hr>
-          <p>Стоимость участия в мероприятии {{ event.event_name }} составляет <span style="font-weight: bold; color: rgb(85, 8, 8);">{{ order.price }} руб.</span> Вы можете оплатить участие через сервис Робокасса нажав на кнопку "Оплатить".</p>
-          <p>
-            <div class="alert alert-primary" role="alert">
-              Внимание! Доставка 
-              {% if order.price == event.price %}
-                <b>не включена</b>
-              {% else %}
-                <b>включена</b>
-              {% endif %}
+          {% if event.additive_price %}
+            <div class="row">
+              <div class="col-lg-6">
+                <a href="?delivery=true" class="btn-custom py-4" style="text-align: center">Включить доставку</a>
+              </div>
+              <div class="col-lg-6">
+                <a href="?delivery=false" class="btn-custom py-4" style="text-align: center; ">Не включать доставку</a>
+              </div>
             </div>
-          </p>
+          
+            <hr>
+            <p>Стоимость участия в мероприятии {{ event.event_name }} составляет <span style="font-weight: bold; color: rgb(85, 8, 8);">{{ order.price }} руб.</span> Вы можете оплатить участие через сервис Робокасса нажав на кнопку "Оплатить".</p>
+            <p>
+              <div class="alert alert-primary" role="alert">
+                Внимание! Доставка 
+                {% if order.price == event.price %}
+                  <b>не включена</b>
+                {% else %}
+                  <b>включена</b>
+                {% endif %}
+              </div>
+            </p>
+          {% endif %}
           <form action="{{ price_form.target }}" method="POST" class="ftco-animate ">
             <p>{{ price_form.as_p }}</p>
             <div class="form-group">

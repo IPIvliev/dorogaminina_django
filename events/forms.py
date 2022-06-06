@@ -7,7 +7,8 @@ class MerchModelChoiceField(forms.ModelChoiceField):
 
 class PlaceModelChoiceField(forms.ModelChoiceField):
      def label_from_instance(self, obj):
-         return "%s свободно мест: %i" % (obj.place_name, obj.amount)
+        free_palce = obj.amount - obj.busy
+        return "%s свободно мест: %i" % (obj.place_name, free_palce)
 
 class FinalOrderForm(forms.Form):
   order_merch = MerchModelChoiceField(queryset=Merch.objects.all(), label="Выберите размел футболки", widget=forms.Select(attrs={'class':'form-control'}))
@@ -26,4 +27,4 @@ class FinalOrderForm(forms.Form):
 
     if event:
       self.fields['order_merch'].queryset = Merch.objects.filter(merch_event=event)
-      self.fields['order_place'].queryset = Place.objects.filter(place_event=event)
+      self.fields['order_place'].queryset = Place.objects.filter(place_event=event, free__gt=0)

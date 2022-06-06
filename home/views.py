@@ -63,10 +63,18 @@ def logout_form(request):
   return redirect(index)
 
 def about(request):
-    return render(request, "home/about.html")
+  active_event = Event.objects.get(active=True)
+  return render(request, "home/about.html", { 
+    'title': active_event.event_name,
+    'registrationform': SignUpForm,
+  })
 
 def prog(request):
-    return render(request, "home/prog.html")
+  active_event = Event.objects.get(active=True)
+  return render(request, "home/prog.html", { 
+    'title': active_event.event_name,
+    'registrationform': SignUpForm,
+  })
 
 def blog(request):
     return render(request, "home/blog.html")
@@ -113,7 +121,6 @@ def profile(request):
       order.order_place = form.cleaned_data['order_place']
       order.save()
       place = Place.objects.get(id=order.order_place.id)
-      place.amount = place.order_set.count()
       place.save()
 
   return render(request, "account/profile.html", {'price_form': price_form, 'order': order, 'event': active_event, 'finalorderform': finalorderform})

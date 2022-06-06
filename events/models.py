@@ -8,6 +8,10 @@ class Event(models.Model):
   addition_price = models.IntegerField(default=0)
   active = models.BooleanField(default=False)
 
+  class Meta:
+      verbose_name = 'Мероприятие'
+      verbose_name_plural = 'Мероприятия'
+
   def __str__(self):
     return u'{0}'.format(self.event_name)
 
@@ -17,11 +21,26 @@ class Partner(models.Model):
   partner_link = models.CharField(max_length=100, null=True, blank=True)
   active = models.BooleanField(default=False)
 
+  class Meta:
+      verbose_name = 'Партнёр'
+      verbose_name_plural = 'Партнёры'
+
 class Place(models.Model):
   place_name = models.CharField(max_length=100)
   place_event = models.ForeignKey(Event, on_delete=models.CASCADE)
-  amount = models.IntegerField(default=0)
+  amount = models.IntegerField('Всего мест', default=0)
+  busy = models.IntegerField('Занято мест', default=0)
+  free = models.IntegerField('Свободно мест', default=0)
   active = models.BooleanField(default=False)
+
+  def save(self, *args, **kwargs):
+    self.busy = self.order_set.count()
+    self.free = self.amount - self.busy
+    super(Place, self).save(*args, **kwargs)
+
+  class Meta:
+      verbose_name = 'Звено'
+      verbose_name_plural = 'Звенья'
 
   def __str__(self):
     return u'{0}'.format(self.place_name)
@@ -32,6 +51,11 @@ class Merch(models.Model):
   size = models.CharField(max_length=100, null=True, blank=True)
   merch_image = models.FileField(upload_to='uploads/merchs/', null=True, blank=True)
   active = models.BooleanField(default=False)
+
+  class Meta:
+      verbose_name = 'Футболка'
+      verbose_name_plural = 'Футболки'
+
   def __str__(self):
     return u'{0}'.format(self.merch_name)
 
@@ -43,3 +67,7 @@ class Order(models.Model):
   price = models.IntegerField(default=0)
   comment = models.CharField(max_length=250, null=True, blank=True)
   active = models.BooleanField(default=False)
+
+  class Meta:
+      verbose_name = 'Оплата'
+      verbose_name_plural = 'Оплаты'

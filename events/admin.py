@@ -14,8 +14,9 @@ class PartnerAdmin(admin.ModelAdmin):
     list_display = ('partner_name',)
 
 @admin.register(Place)
-class MerchAdmin(admin.ModelAdmin):
-    list_display = ('place_name', 'place_event', 'amount', 'active')
+class PlaceAdmin(admin.ModelAdmin):
+    list_display = ('place_name', 'place_event', 'amount', 'busy', 'free', 'active')
+    readonly_fields = ('free', 'busy')
 
 @admin.register(Merch)
 class MerchAdmin(admin.ModelAdmin):

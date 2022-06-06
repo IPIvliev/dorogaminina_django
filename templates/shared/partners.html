@@ -17,7 +17,13 @@
                 <div class="text">
                   <div class="d-flex align-items-center">
                     <div>
-                      <a href="{{ partner.partner_link }}" target="_blank"><img src="{{ partner.partner_logo.url }}"></a>
+                      {% if partner.partner_link %}
+                        <a href="{{ partner.partner_link }}" target="_blank">
+                          <img src="{{ partner.partner_logo.url }}">
+                        </a>
+                      {% else %}
+                        <img src="{{ partner.partner_logo.url }}">
+                      {% endif %}
                     </div>
                     <div class="ml-4">
                       <p class="name">{{partner.partner_name}}</p>
