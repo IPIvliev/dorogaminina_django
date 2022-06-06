@@ -31,7 +31,7 @@ def index(request):
     return render(request, "home/index.html", {
       'title': event.event_name,
       'registrationform': SignUpForm,
-      'partners': Partner.objects.filter(active=True).order_by('-partner_order'),
+      'partners': Partner.objects.filter(active=True).order_by('partner_order'),
       'event': event
     })
 
