@@ -11,7 +11,7 @@ class EventAdmin(admin.ModelAdmin):
 
 @admin.register(Partner)
 class PartnerAdmin(admin.ModelAdmin):
-    list_display = ('partner_name',)
+    list_display = ('partner_name', 'partner_order')
 
 @admin.register(Place)
 class PlaceAdmin(admin.ModelAdmin):

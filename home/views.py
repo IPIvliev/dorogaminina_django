@@ -27,10 +27,12 @@ def index(request):
       login(request, user)
       return redirect(profile)
   else:
+    event = Event.objects.get(active='True')
     return render(request, "home/index.html", {
-      'title': Event.objects.get(active='True').event_name,
+      'title': event.event_name,
       'registrationform': SignUpForm,
-      'partners': Partner.objects.filter(active=True)
+      'partners': Partner.objects.filter(active=True).order_by('-partner_order'),
+      'event': event
     })
 
 def login_form(request):
@@ -66,6 +68,7 @@ def about(request):
   active_event = Event.objects.get(active=True)
   return render(request, "home/about.html", { 
     'title': active_event.event_name,
+    'event': active_event,
     'registrationform': SignUpForm,
   })
 
@@ -73,6 +76,7 @@ def prog(request):
   active_event = Event.objects.get(active=True)
   return render(request, "home/prog.html", { 
     'title': active_event.event_name,
+    'event': active_event,
     'registrationform': SignUpForm,
   })
 

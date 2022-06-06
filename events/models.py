@@ -6,6 +6,17 @@ class Event(models.Model):
   start_date = models.DateField()
   price = models.IntegerField(default=0)
   addition_price = models.IntegerField(default=0)
+  description_template = models.BooleanField('Блок описания', default=False)
+  statistic_template = models.BooleanField('Блок статистики', default=False)
+  about_template = models.BooleanField('Блок О проекте', default=False)
+  team_template = models.BooleanField('Блок команды', default=False)
+  history_template = models.BooleanField('Блок исторической справки', default=False)
+  cost_template = models.BooleanField('Блок стоимости', default=False)
+  feedback_template = models.BooleanField('Блок отзывов', default=False)
+  blog_template = models.BooleanField('Блок новостей', default=False)
+  registration_template = models.BooleanField('Блок регистрации', default=False)
+  gallery_template = models.BooleanField('Блок галереи', default=False)
+  partners_template = models.BooleanField('Блок партнёров', default=False)
   active = models.BooleanField(default=False)
 
   class Meta:
@@ -16,9 +27,10 @@ class Event(models.Model):
     return u'{0}'.format(self.event_name)
 
 class Partner(models.Model):
-  partner_name = models.CharField(max_length=100)
-  partner_logo = models.FileField(upload_to='uploads/partners/')
-  partner_link = models.CharField(max_length=100, null=True, blank=True)
+  partner_name = models.CharField('Наименование', max_length=100)
+  partner_logo = models.FileField('Логотип', upload_to='uploads/partners/')
+  partner_link = models.CharField('Ссылка', max_length=100, null=True, blank=True)
+  partner_order = models.IntegerField('Порядковый номер', default=0)
   active = models.BooleanField(default=False)
 
   class Meta:

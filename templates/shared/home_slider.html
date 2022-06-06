@@ -9,11 +9,13 @@
         <div class="col-sm-12 ftco-animate text-center">
           <h1 class="mb-4">{{title|safe}}</h1>
           <h2 class="subheading">Экспедиция<br> "Русская Цивилизация"</h2>
-          {% if not request.user.is_authenticated %}
-            <a href="#registration" class="btn-custom py-4" style="margin-top: 50px;">Зарегистрироваться</a>
-            <a href="/login.html" class="btn-custom py-4" style="margin-top: 50px;">Войти</a>
-          {% else %}
-            <a href="/login.html" class="btn-custom py-4" style="margin-top: 50px;">Войти</a>
+          {% if event.registration_template == True %}
+            {% if not request.user.is_authenticated %}
+              <a href="#registration" class="btn-custom py-4" style="margin-top: 50px;">Зарегистрироваться</a>
+              <a href="/login.html" class="btn-custom py-4" style="margin-top: 50px;">Войти</a>
+            {% else %}
+              <a href="/login.html" class="btn-custom py-4" style="margin-top: 50px;">Войти</a>
+            {% endif %}
           {% endif %}
         </div>
 
