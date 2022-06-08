@@ -16,7 +16,7 @@ class AuthBackend(object):
     def authenticate(self, request, username, password):
         try:
           user = User.objects.get(
-              username=username
+              Q(username=username) | Q(email=username) | Q(phone=username)
           )
         except User.DoesNotExist:
           return None
