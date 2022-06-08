@@ -24,6 +24,9 @@ def index(request):
       api.send_one_sms(user.phone, message)
       login(request, user)
       return redirect(profile)
+    else:
+      print("Registration Form is not valid")
+      return redirect(index)
   else:
     event = Event.objects.get(active='True')
     return render(request, "home/index.html", {
@@ -47,6 +50,8 @@ def login_form(request):
       else:
         login(request, user)
         return redirect(profile)
+    else:
+      print("Form is not valid")
   else:
     if request.user.is_authenticated:
       return redirect(profile)
