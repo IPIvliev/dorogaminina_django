@@ -20,14 +20,13 @@ def payment_received(request, sender, **kwargs):
 @csrf_exempt
 def payment_success(request):
   data = request.POST
-  form = SuccessRedirectForm(data)
-  if form.is_valid():
-    inv_id, out_sum = form.cleaned_data['InvId'], form.cleaned_data['OutSum']
-    order = Order.objects.get(id=inv_id)
-    order.active = True
-    order.price = out_sum
-    order.save()
-    return redirect(index)
+  inv_id = data.get("InvId")
+  out_sum = data.get("OutSum")
+  order = Order.objects.get(id=inv_id)
+  order.active = True
+  order.price = out_sum
+  order.save()
+  return redirect(index)
 
 @csrf_exempt
 def payment_fail(sender, **kwargs):
