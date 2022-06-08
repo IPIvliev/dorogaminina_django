@@ -19,6 +19,10 @@ def payment_received(sender, **kwargs):
 
 @csrf_exempt
 def payment_success(sender, **kwargs):
+  order = Order.objects.get(id=kwargs['InvId'])
+  order.active = True
+  order.price = kwargs['OutSum']
+  order.save()
   return redirect(index)
 
 # success_page_visited.connect(payment_success)
