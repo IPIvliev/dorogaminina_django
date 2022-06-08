@@ -15,16 +15,16 @@ def payment_received(sender, **kwargs):
   order.save()
   return redirect(index)
 
-result_received.connect(payment_received)
+# result_received.connect(payment_received)
 
 @csrf_exempt
 def payment_success(sender, **kwargs):
   return redirect(index)
 
-success_page_visited.connect(payment_success)
+# success_page_visited.connect(payment_success)
 
 @csrf_exempt
 def payment_fail(sender, **kwargs):
   return redirect(index)
 
-fail_page_visited.connect(payment_fail)
+# fail_page_visited.connect(payment_fail)
