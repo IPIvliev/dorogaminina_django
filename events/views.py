@@ -19,7 +19,7 @@ def payment_received(request, sender, **kwargs):
 
 @csrf_exempt
 def payment_success(request):
-  data = request.POST if USE_POST else request.GET
+  data = request.POST
   form = SuccessRedirectForm(data)
   if form.is_valid():
     inv_id, out_sum = form.cleaned_data['InvId'], form.cleaned_data['OutSum']
