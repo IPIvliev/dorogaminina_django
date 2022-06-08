@@ -100,8 +100,8 @@ DATABASES = {
     'default': {
       'ENGINE': 'django.db.backends.postgresql_psycopg2',
       'NAME': 'dorogaminina',
-      'USER' : 'razrus',
-      #'USER' : 'postgres',
+      #'USER' : 'razrus',
+      'USER' : 'postgres',
       'PASSWORD' : 'Huteras52',
       'HOST' : '127.0.0.1',
       'PORT' : '5432',
@@ -161,9 +161,9 @@ EMAIL_USE_TLS = False
 EMAIL_USE_SSL = True
 
 SMS_RU = {
-    "API_ID": '377CE569-9C91-53D6-3126-B7A2512E2966', # если указан API ключ, логин и пароль пропускаем
+    "API_ID": '4421930E-271F-0A98-8A40-F6306692C5E3', # если указан API ключ, логин и пароль пропускаем
     "TEST": True, # отправка смс в тестовом режиме, по умолчанию False
-    "SENDER": 'DorogaMinina', # отправитель - необязательно поле
+    "SENDER": 'DorogaM', # отправитель - необязательно поле
 }
 
 ROBOKASSA_LOGIN = 'dorogaminina'

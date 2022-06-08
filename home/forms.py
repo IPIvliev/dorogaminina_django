@@ -5,7 +5,7 @@ class SignUpForm(forms.ModelForm):
   lastname = forms.CharField(widget=forms.TextInput(attrs={"class":"form-control", 'placeholder': 'Фамилия'}), label="", required=True)
   username = forms.CharField(widget=forms.TextInput(attrs={"class":"form-control", 'placeholder': 'Имя'}), label="", required=True)
   middlename = forms.CharField(widget=forms.TextInput(attrs={"class":"form-control", 'placeholder': 'Отчество'}), label="")
-  phone = forms.CharField(widget=forms.TextInput(attrs={"class":"form-control", 'placeholder': 'Номер телефона'}), label="", required=True)
+  phone = forms.CharField(widget=forms.TextInput(attrs={"class":"form-control", "id": "phone", 'placeholder': 'Номер телефона'}), label="", required=True)
 
   class Meta: 
     model = User 
