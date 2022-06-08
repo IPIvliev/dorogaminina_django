@@ -167,7 +167,9 @@ SMS_RU = {
 }
 
 ROBOKASSA_LOGIN = 'dorogaminina'
-ROBOKASSA_PASSWORD1 = 'OdergiesFNK1'
+#ROBOKASSA_PASSWORD1 = 'OdergiesFNK1'
+ROBOKASSA_PASSWORD1 = 'Odergies1'
+ROBOKASSA_TEST_MODE = True
 
 LOGGING = {
     'version': 1,

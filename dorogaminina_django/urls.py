@@ -19,6 +19,7 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
 from home import views
+from events.views import payment_success, payment_fail, payment_received
 
 urlpatterns = [
   path('', views.index),
@@ -31,8 +32,9 @@ urlpatterns = [
   path('admin/', admin.site.urls),
   path('login.html', views.login_form, name='login'),
   path('logout.html', views.logout_form, name='logout'),
-  #path('smsru/', include('smsru.urls'))
-  # path('accounts/', include('django.contrib.auth.urls')),
+  path('/robokassa/success', payment_success),
+  path('/robokassa/fail', payment_fail),
+  path('/robokassa/paid', payment_received),
 ]
 
 if settings.DEBUG:
