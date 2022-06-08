@@ -34,7 +34,7 @@ urlpatterns = [
   path('logout.html', views.logout_form, name='logout'),
   path('robokassa/success', payment_success),
   path('robokassa/fail', payment_fail),
-  path('robokassa/paid', payment_received),
+  # path('robokassa/paid', payment_received),
 ]
 
 if settings.DEBUG:
