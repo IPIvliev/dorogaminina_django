@@ -24,7 +24,7 @@ def payment_success(request):
   out_sum = data.get("OutSum")
   order = Order.objects.get(id=inv_id)
   order.active = True
-  order.price = out_sum
+  order.price = int(out_sum)
   order.save()
   return redirect(index)
 
