@@ -8,14 +8,15 @@ from robokassa.signals import result_received, success_page_visited, fail_page_v
 from django.views.decorators.csrf import csrf_exempt
 
 @csrf_exempt
-def payment_received(sender, **kwargs):
+def payment_received(request, sender, **kwargs):
+  print(kwargs)
   order = Order.objects.get(id=kwargs['InvId'])
   order.active = True
   order.price = kwargs['OutSum']
   order.save()
   return redirect(index)
 
-# result_received.connect(payment_received)
+result_received.connect(payment_received)
 
 @csrf_exempt
 def payment_success(sender, **kwargs):
@@ -25,10 +26,10 @@ def payment_success(sender, **kwargs):
   order.save()
   return redirect(index)
 
-# success_page_visited.connect(payment_success)
+success_page_visited.connect(payment_success)
 
 @csrf_exempt
 def payment_fail(sender, **kwargs):
   return redirect(index)
 
-# fail_page_visited.connect(payment_fail)
+fail_page_visited.connect(payment_fail)
