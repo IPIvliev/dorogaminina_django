@@ -7,6 +7,7 @@ from django.http import HttpResponse
 from robokassa.signals import result_received, success_page_visited, fail_page_visited
 
 def payment_received(sender, **kwargs):
+  dfre
   order = Order.objects.get(id=kwargs['InvId'])
   order.active = True
   order.price = kwargs['OutSum']
