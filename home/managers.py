@@ -7,7 +7,6 @@ class UserManager(BaseUserManager):
         """
         Creates and saves a User with the given email and password.
         """
-        print("Start _create_user")
         if not username:
             if not email and not phone:
                 raise ValueError('The given email/phone must be set')
@@ -47,7 +46,6 @@ class UserManager(BaseUserManager):
         return user
 
     def create_user(self, phone, password, **extra_fields):
-        print("Start create_user")
         extra_fields.setdefault('is_superuser', False)
         password = "123"
         return self._create_user(phone=phone, password=password, **extra_fields)

@@ -16,8 +16,6 @@ class User(AbstractBaseUser, PermissionsMixin):
     date_joined = models.DateTimeField(_('date joined'), auto_now_add=True)
     is_active = models.BooleanField(_('active'), default=False)
     is_staff = models.BooleanField(_('staff'), default=False)
-    #events = models.ManyToManyField(Event)
-    #orders = models.OneToOneField(Order, on_delete=models.CASCADE)
     is_verified = models.BooleanField(_('verified'), default=False)
 
     objects = UserManager()

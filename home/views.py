@@ -20,10 +20,8 @@ def index(request):
       user.more = more
       user.set_password(more)
       user.save()
-      print('Сохранили пользователя')
       message = 'Ваш пароль для Дороги Минина: ' + user.more
       api.send_one_sms(user.phone, message)
-      print('Отправили смс')
       login(request, user)
       return redirect(profile)
   else:
@@ -41,11 +39,8 @@ def login_form(request):
     if form.is_valid():
       phone = form.cleaned_data['phone']
       password = form.cleaned_data['password']
-      print(phone)
-      print(password)
       user = authenticate(request, username=phone, password=password)
       if user is None:
-        print("User not found")
         return render(request, "home/signin.html", {
           'loginform': LoginForm
         })
@@ -92,8 +87,6 @@ def profile(request):
   finalorderform = FinalOrderForm(event=active_event)
   order, created = Order.objects.get_or_create(order_event=active_event, order_user=request.user)
   if request.GET.get('delivery') == "true":
-    print("Delivery True")
-    # order = Order.objects.get(order_event=active_event, order_user=request.user)
     price = active_event.addition_price
     order.price = price
     order.save()
@@ -101,12 +94,8 @@ def profile(request):
               'OutSum': order.price,
               'InvId': order.id,
               'Desc': request.user.id,
-              # 'IncCurrLabel': '',
-              # 'Culture': 'ru'
           })
   else:
-    print( request.GET.get('delivery'))
-    # order, created = Order.objects.get_or_create(order_event=active_event, order_user=request.user)
     price = active_event.price
     order.price = price
     order.save()
