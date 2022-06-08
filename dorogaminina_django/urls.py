@@ -32,9 +32,9 @@ urlpatterns = [
   path('admin/', admin.site.urls),
   path('login.html', views.login_form, name='login'),
   path('logout.html', views.logout_form, name='logout'),
-  path('/robokassa/success', payment_success),
-  path('/robokassa/fail', payment_fail),
-  path('/robokassa/paid', payment_received),
+  path('robokassa/success', payment_success),
+  path('robokassa/fail', payment_fail),
+  path('robokassa/paid', payment_received),
 ]
 
 if settings.DEBUG:
