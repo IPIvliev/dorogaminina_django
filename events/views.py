@@ -16,6 +16,7 @@ def payment_received(sender, **kwargs):
 result_received.connect(payment_received)
 
 def payment_success(sender, **kwargs):
+  fggf
   return redirect(index)
 
 success_page_visited.connect(payment_success)
