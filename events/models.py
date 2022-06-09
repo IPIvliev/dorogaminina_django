@@ -33,7 +33,7 @@ class Partner(models.Model):
   partner_name = models.CharField('Наименование', max_length=100)
   partner_logo = models.FileField('Логотип', upload_to='uploads/partners/')
   partner_link = models.CharField('Ссылка', max_length=100, null=True, blank=True)
-  partner_order = models.IntegerField('Порядковый номер', default=0)
+  partner_order = models.CharField('Порядковый номер', max_length=1, default=0)
   active = models.BooleanField(default=False)
 
   class Meta:
