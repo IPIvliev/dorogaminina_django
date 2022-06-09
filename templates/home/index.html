@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load index_tags %}
 
 {% block content %}
 
@@ -459,51 +460,21 @@
         </div>
       </div>
       <div class="row d-flex">
-        <div class="col-md-4 d-flex ftco-animate">
-          <div class="blog-entry justify-content-end">
-            <a href="blog-single.html" class="block-20" style="background-image: url({% static 'images/news-1.jpg' %});">
-            </a>
-            <div class="text p-4 float-right d-block">
-              <div class="meta">
-                <div><a href="#">31.05.2022</a></div>
-                <div><a href="#">Admin</a></div>
-                <div><a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a></div>
+        {% get_news 3 as news %}
+        {% for article in news %}
+          <div class="col-md-4 ftco-animate">
+            <div class="blog-entry justify-content-end">
+              <a href="blog-single.html" class="block-20" style="background-image: url('{{ article.article_image.url }}');">
+              </a>
+              <div class="text p-4 float-right d-block">
+                <div class="meta">
+                  <div><a href="#">{{ article.publish|date:'d.m.Y'}}</a></div>
+                </div>
+                <h3 class="heading mt-2"><a href="#">{{ article.title }}</a></h3>
               </div>
-              <h3 class="heading mt-2"><a href="#">Название статьи</a></h3>
-              <p>Краткое содержание статьи.</p>
             </div>
           </div>
-        </div>
-        <div class="col-md-4 d-flex ftco-animate">
-          <div class="blog-entry justify-content-end">
-            <a href="blog-single.html" class="block-20" style="background-image: url({% static 'images/news-2.jpg' %});">
-            </a>
-            <div class="text p-4 float-right d-block">
-              <div class="meta">
-                <div><a href="#">31.05.2022</a></div>
-                <div><a href="#">Admin</a></div>
-                <div><a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a></div>
-              </div>
-              <h3 class="heading mt-2"><a href="#">Название статьи</a></h3>
-              <p>Краткое содержание статьи.</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4 d-flex ftco-animate">
-          <div class="blog-entry">
-            <a href="blog-single.html" class="block-20" style="background-image: url({% static 'images/news-3.jpg' %});">
-            </a>
-            <div class="text p-4 float-right d-block">
-              <div class="meta">
-                <div><a href="#">31.05.2022</a></div>
-                <div><a href="#">Admin</a></div>
-                <div><a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a></div>
-              </div>
-              <h3 class="heading mt-2"><a href="#">Название статьи</a></h3>
-              <p>Краткое содержание статьи.</p>
-            </div>
-          </div>
-        </div>
+        {% endfor %}
       </div>
     </div>
   </section>

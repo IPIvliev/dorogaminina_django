@@ -1,12 +1,13 @@
 from django.shortcuts import render, redirect
 from home.forms import SignUpForm, LoginForm
-from events.forms import FinalOrderForm
-from events.models import Place
+from events.forms import FinalOrderForm, MessageForm
+from events.models import Place, Event, Partner, Order
+from blog.models import Article
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 import random, string
+from django.core.paginator import Paginator
 
-from events.models import Event, Partner, Order
 from robokassa.forms import RobokassaForm
 from smsru.service import SmsRuApi
  
@@ -81,10 +82,30 @@ def prog(request):
   })
 
 def blog(request):
-    return render(request, "home/blog.html")
+  active_event = Event.objects.get(active=True)
+  news = Article.objects.order_by('-publish')
+  paginator = Paginator(news, 6)
+  page_number = request.GET.get('page')
+  page_obj = paginator.get_page(page_number)
+  return render(request, "home/blog.html", {
+    'page_obj': page_obj,
+    'event': active_event
+  })
 
 def contacts(request):
-    return render(request, "home/contacts.html")
+  active_event = Event.objects.get(active=True)
+  if request.method == 'POST': 
+    form = MessageForm(request.POST)
+    print("Have POST")
+    if form.is_valid():
+      print("Form valid")
+      form.save()
+      return redirect(contacts)
+  else:
+    return render(request, "home/contacts.html", {
+      'event': active_event,
+      'messageform': MessageForm
+  })
 
 @login_required
 def profile(request):

@@ -6,6 +6,9 @@ class Event(models.Model):
   start_date = models.DateField()
   price = models.IntegerField(default=0)
   addition_price = models.IntegerField(default=0)
+  phone = models.CharField('Телефон мероприятия', max_length=20, null=True, blank=True)
+  email = models.CharField('Почта мероприятия', max_length=50, null=True, blank=True)
+  info = models.CharField('Сообщение в профайле участников', max_length=750, null=True, blank=True)
   description_template = models.BooleanField('Блок описания', default=False)
   statistic_template = models.BooleanField('Блок статистики', default=False)
   about_template = models.BooleanField('Блок О проекте', default=False)
@@ -83,3 +86,12 @@ class Order(models.Model):
   class Meta:
       verbose_name = 'Оплата'
       verbose_name_plural = 'Оплаты'
+
+class Message(models.Model):
+  name = models.CharField(max_length=50, null=True, blank=True)
+  email = models.CharField(max_length=50, null=True, blank=True)
+  message = models.CharField(max_length=1000, null=True, blank=True)
+
+  class Meta:
+      verbose_name = 'Сообщение'
+      verbose_name_plural = 'Сообщения'

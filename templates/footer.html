@@ -1,5 +1,6 @@
 {% load static %}
-   
+{% load index_tags %}
+
  <footer class="ftco-footer ftco-section img">
   <div class="overlay"></div>
   <div class="container">
@@ -16,31 +17,23 @@
         </div>
       </div>
       <div class="col-lg-4 col-md-6 mb-5 mb-md-5">
-        <div class="ftco-footer-widget mb-4">
-          <!-- <h2 class="ftco-heading-2">Последние новости</h2>
-          <div class="block-21 mb-4 d-flex">
-            <a class="blog-img mr-4" style="background-image: url({% static 'images/works/01.jpg' %});"></a>
-            <div class="text">
-              <h3 class="heading"><a href="#">Заголовок новости 1</a></h3>
-              <div class="meta">
-                <div><a href="#"><span class="icon-calendar"></span> Dec 25, 2018</a></div>
-                <div><a href="#"><span class="icon-person"></span> Admin</a></div>
-                <div><a href="#"><span class="icon-chat"></span> 19</a></div>
+        {% if event.blog_template == True %}
+          <div class="ftco-footer-widget mb-4">
+            <h2 class="ftco-heading-2">Последние новости</h2>
+            {% get_news 2 as news %}
+            {% for article in news %}
+              <div class="block-21 mb-4 d-flex">
+                <a class="blog-img mr-4" style="background-image: url('{{ article.article_image.url }}');"></a>
+                <div class="text">
+                  <h3 class="heading"><a href="#">{{ article.title }}</a></h3>
+                  <div class="meta">
+                    <div><span class="icon-calendar"></span> {{ article.publish|date:'d.m.Y'}}</div>
+                  </div>
+                </div>
               </div>
-            </div>
+            {% endfor %}
           </div>
-          <div class="block-21 mb-4 d-flex">
-            <a class="blog-img mr-4" style="background-image: url({% static 'images/works/02.jpg' %});"></a>
-            <div class="text">
-              <h3 class="heading"><a href="#">Заголовок новости 2</a></h3>
-              <div class="meta">
-                <div><a href="#"><span class="icon-calendar"></span> Dec 25, 2018</a></div>
-                <div><a href="#"><span class="icon-person"></span> Admin</a></div>
-                <div><a href="#"><span class="icon-chat"></span> 19</a></div>
-              </div>
-            </div>
-          </div> -->
-        </div>
+        {% endif %}
       </div>
       <div class="col-lg-2 col-md-6 mb-5 mb-md-5">
          <div class="ftco-footer-widget mb-4 ml-md-4">
@@ -59,8 +52,8 @@
           <div class="block-23 mb-3">
             <ul>
               <!-- <li><span class="icon icon-map-marker"></span><span class="text">Адрес офиса, если нужно</span></li> -->
-              <li><span class="icon icon-phone"></span><span class="text">+7 999 999 99-99</span></li>
-              <li><span class="icon icon-envelope"></span><span class="text">doroga_minina@mail.ru</span></li>
+              <li><span class="icon icon-phone"></span><span class="text">{{ event.phone }}</span></li>
+              <li><span class="icon icon-envelope"></span><span class="text">{{ event.email }}</span></li>
             </ul>
           </div>
         </div>

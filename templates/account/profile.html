@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load index_tags %}
 
 {% block content %}
 <section class="ftco-counter img" id="section-counter" style="background-image: url({% static 'images/bg_5.jpg' %});" data-stellar-background-ratio="0">
@@ -36,7 +37,7 @@
         <hr>
         {% if order.active == True and order.order_merch == Null %}
           <div class="alert alert-primary" role="alert">
-            Вы оплатили участие в проекте {{ event.event_name }}  
+            Вы оплатили участие в проекте {{ event.event_name|striptags }}  
           </div>
           <p>Выберите звено и размер футболки для окончания регистрации.</p>
           <div class="alert alert-secondary">
@@ -64,7 +65,7 @@
           </div>
         {% elif order.active == True and order.order_merch != Null %}
         <div class="alert alert-success">
-          Поздравляем! Вы успешно зарегистрировались на мероприятие: {{ event.event_name }}
+          Поздравляем! Вы успешно зарегистрировались на мероприятие: {{ event.event_name|striptags }}
         </div>
         {% else %}
           {% if event.additive_price %}
@@ -90,8 +91,10 @@
               </div>
             </p>
           {% endif %}
-          <p>Стоимость участия в мероприятии {{ event.event_name }} составляет <span style="font-weight: bold; color: rgb(85, 8, 8);">{{ order.price }} руб.</span> Вы можете оплатить участие через сервис Робокасса нажав на кнопку "Оплатить".</p>
-          <form action="{{ price_form.target }}" method="POST" class="ftco-animate ">
+          <div class="alert alert-primary">
+            <p>Стоимость участия в мероприятии {{ event.event_name|striptags }} составляет <span style="font-weight: bold; color: rgb(85, 8, 8);">{{ order.price }} руб.</span> Вы можете оплатить участие через сервис Робокасса нажав на кнопку "Оплатить".</p>
+          </div>
+            <form action="{{ price_form.target }}" method="POST" class="ftco-animate ">
             <p>{{ price_form.as_p }}</p>
             <div class="form-group">
               <input type="submit" value="ОПЛАТИТЬ" class="btn btn-primary py-3 px-5 col-lg-12" style="text-align: center">
@@ -109,48 +112,28 @@
           </div>
         </div>
 
-        <!-- <div class="sidebar-box ftco-animate">
+        <div class="sidebar-box ftco-animate">
           <h3 class="heading-2">Информация</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus itaque, autem necessitatibus voluptate quod mollitia delectus aut, sunt placeat nam vero culpa sapiente consectetur similique, inventore eos fugit cupiditate numquam!</p>
-        </div> -->
+          <p>{{ event.info|safe }}</p>
+        </div>
 
-        <!-- <div class="sidebar-box ftco-animate">
-          <h3 class="heading-2">Последние новости</h3>
-          <div class="block-21 mb-4 d-flex">
-            <a class="blog-img mr-4" style="background-image: url(images/image_1.jpg);"></a>
-            <div class="text">
-              <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about the blind texts</a></h3>
-              <div class="meta">
-                <div><a href="#"><span class="icon-calendar"></span> July 12, 2018</a></div>
-                <div><a href="#"><span class="icon-person"></span> Admin</a></div>
-                <div><a href="#"><span class="icon-chat"></span> 19</a></div>
+        {% if event.blog_template == True %}
+          <div class="sidebar-box ftco-animate">
+            <h3 class="heading-2">Последние новости</h3>
+            {% get_news 3 as news %}
+            {% for article in news %}
+              <div class="block-21 mb-4 d-flex">
+                <a class="blog-img mr-4" style="background-image: url('{{ article.article_image.url }}');"></a>
+                <div class="text">
+                  <h3 class="heading"><a href="#">{{ article.title }}</a></h3>
+                  <div class="meta">
+                    <div><a href="#"><span class="icon-calendar"></span> {{ article.publish|date:'d.m.Y'}}</a></div>
+                  </div>
+                </div>
               </div>
-            </div>
+            {% endfor %}
           </div>
-          <div class="block-21 mb-4 d-flex">
-            <a class="blog-img mr-4" style="background-image: url(images/image_2.jpg);"></a>
-            <div class="text">
-              <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about the blind texts</a></h3>
-              <div class="meta">
-                <div><a href="#"><span class="icon-calendar"></span> July 12, 2018</a></div>
-                <div><a href="#"><span class="icon-person"></span> Admin</a></div>
-                <div><a href="#"><span class="icon-chat"></span> 19</a></div>
-              </div>
-            </div>
-          </div>
-          <div class="block-21 mb-4 d-flex">
-            <a class="blog-img mr-4" style="background-image: url(images/image_3.jpg);"></a>
-            <div class="text">
-              <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about the blind texts</a></h3>
-              <div class="meta">
-                <div><a href="#"><span class="icon-calendar"></span> July 12, 2018</a></div>
-                <div><a href="#"><span class="icon-person"></span> Admin</a></div>
-                <div><a href="#"><span class="icon-chat"></span> 19</a></div>
-              </div>
-            </div>
-          </div>
-        </div> -->
-
+        {% endif %}
       </div>
 
     </div>

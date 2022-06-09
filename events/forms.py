@@ -1,5 +1,5 @@
 from django import forms
-from events.models import Merch, Place, Order
+from events.models import Merch, Place, Order, Message
 
 class MerchModelChoiceField(forms.ModelChoiceField):
      def label_from_instance(self, obj):
@@ -28,3 +28,12 @@ class FinalOrderForm(forms.Form):
     if event:
       self.fields['order_merch'].queryset = Merch.objects.filter(merch_event=event)
       self.fields['order_place'].queryset = Place.objects.filter(place_event=event, free__gt=0)
+
+class MessageForm(forms.ModelForm):
+  name = forms.CharField(widget=forms.TextInput(attrs={"class":"form-control", 'placeholder': 'Имя'}), label="", required=True)
+  email = forms.CharField(widget=forms.TextInput(attrs={"class":"form-control", 'placeholder': 'Email'}), label="", required=True)
+  message = forms.CharField(widget=forms.Textarea(attrs={"class":"form-control", 'placeholder': 'Сообщение до 1000 символов'}), label="", required=True)
+
+  class Meta: 
+    model = Message
+    fields =('name', 'email', 'message')

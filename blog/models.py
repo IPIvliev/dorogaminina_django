@@ -24,6 +24,7 @@ class Article(models.Model):
   title = models.CharField("Название статьи", max_length=350)
   slug = models.SlugField("SEO адрес", max_length=350, blank=True)
   category = models.ForeignKey(Category, verbose_name="Категория", on_delete=models.SET_DEFAULT, default=1, related_name='categories_articles')
+  article_image = models.FileField(upload_to='uploads/blog/', null=True, blank=True)
   body = models.TextField('Текст статьи', null=True, blank=True)
   publish = models.DateTimeField("Дата публикации", default=timezone.now)
   created = models.DateTimeField("Дата написания статьи", auto_now_add=True)

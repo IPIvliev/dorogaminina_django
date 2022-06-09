@@ -26,33 +26,34 @@
             <p><span>Адрес:</span> г. Нижний Новгород, ул. ....</p>
           </div> -->
           <div class="col-md-12 mb-3">
-            <p><span>Телефон:</span> <a href="tel://1234567920">+7 999 999 99-99</a></p>
+            <p><span>Телефон: </span> {{ event.phone }}</p>
           </div>
           <div class="col-md-12 mb-3">
-            <p><span>Email:</span>doroga_minina@mail.ru</p>
+            <p><span>Email: </span> {{ event.email }}</p>
           </div>
           <div class="col-md-12 mb-3">
-            <p><span>Сайт:</span> <a href="#">www.дорогаминина.рф</a></p>
+            <p><span>Сайт: </span> <a href="#">www.дорогаминина.рф</a></p>
           </div>
         </div>
       </div>
       <div class="col-md-1"></div>
       <div class="col-md-6 ftco-animate">
-        <form action="#" class="contact-form">
+        <form method="post" class="contact-form">
+          {% csrf_token %}
           <div class="row">
             <div class="col-md-6">
               <div class="form-group">
-                <input type="text" class="form-control" placeholder="Ваше имя">
+                {{ messageform.name }}
               </div>
             </div>
             <div class="col-md-6">
               <div class="form-group">
-                <input type="text" class="form-control" placeholder="Ваша почта">
+                {{ messageform.email }}
               </div>
-              </div>
+            </div>
           </div>
           <div class="form-group">
-            <textarea name="" id="" cols="30" rows="7" class="form-control" placeholder="Сообщение"></textarea>
+            {{ messageform.message }}
           </div>
           <div class="form-group">
             <input type="submit" value="Отправить" class="btn btn-primary py-3 px-5">
