@@ -28,39 +28,42 @@
                   <div class="meta">
                     <div>{{ article.publish|date:'d.m.Y'}}</div>
                   </div>
-                  <h3 class="heading mt-2"><a href="#">{{ article.title }}</a></h3>
+                  <h3 class="heading mt-2"><a href="{% url 'show_article' slug=article.slug %}">{{ article.title }}</a></h3>
                 </div>
               </div>
             </div>
           {% endfor %}
         </div>
-        <div class="row mt-5">
-          <div class="col text-center">
-            <div class="block-27">
-              <ul>
-                {% if page_obj.has_previous %}
-                  <li><a href="?page={{ page_obj.previous_page_number }}">&lt;</a></li>
-                {% endif %}
-                <li class="active">
-                  <span>
-                    {{ page_obj.number }}
-                  </span>
-                </li>
-                {% if page_obj.has_next %}
-                  <li><a href="?page={{ page_obj.next_page_number }}">&gt;</a></li>
-                {% endif %}
-              </ul>
+        {% if page_obj > 1 %}
+          <div class="row mt-5">
+            <div class="col text-center">
+              <div class="block-27">
+                <ul>
+                  {% if page_obj.has_previous %}
+                    <li><a href="?page={{ page_obj.previous_page_number }}">&lt;</a></li>
+                  {% endif %}
+                  <li class="active">
+                    <span>
+                      {{ page_obj.number }}
+                    </span>
+                  </li>
+                  {% if page_obj.has_next %}
+                    <li><a href="?page={{ page_obj.next_page_number }}">&gt;</a></li>
+                  {% endif %}
+                </ul>
+              </div>
             </div>
           </div>
-        </div>
+        {% endif %}
       </div> <!-- .col-md-8 -->
       <div class="col-lg-4 sidebar ftco-animate">
         <div class="sidebar-box ftco-animate">
           <div class="categories">
             <h3 class="heading-2">Категории</h3>
-            <li><a href="#">История <span>(12)</span></a></li>
-            <li><a href="#">Новости <span>(22)</span></a></li>
-            <li><a href="#">СМИ о нас <span>(37)</span></a></li>
+            <li><a href="?category=news">Новости </a></li>
+            {% if event.history_template == True %}
+              <li><a href="?category=history">История </a></li>
+            {% endif %}
           </div>
         </div>
 

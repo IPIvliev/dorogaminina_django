@@ -35,7 +35,8 @@ class Article(models.Model):
 
   def save(self, *args, **kwargs):
     if not self.slug:
-      self.slug = slugify(self.title.lower())
+      print("Make slug")
+      self.slug = slugify(self.title, allow_unicode=True)
     super(Article, self).save(*args, **kwargs)
 
   class Meta:

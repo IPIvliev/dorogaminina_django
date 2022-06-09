@@ -20,13 +20,15 @@ from django.contrib import admin
 from django.urls import path, include
 from home import views
 from events.views import payment_success, payment_fail
+from blog.views import show_article
 
 urlpatterns = [
   path('', views.index),
-  path('index.html', views.index),
+  path('index.html', views.index, name='main'),
   path('about.html', views.about, name='about'),
   path('prog.html', views.prog, name='prog'),
   path('blog.html', views.blog, name='blog'),
+  path('blog/<str:slug>/', show_article, name='show_article'),
   path('contacts.html', views.contacts, name='contacts'),
   path('profile.html', views.profile, name='profile'),
   path('admin/', admin.site.urls),

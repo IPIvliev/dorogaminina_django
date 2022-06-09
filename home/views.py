@@ -84,6 +84,10 @@ def prog(request):
 def blog(request):
   active_event = Event.objects.get(active=True)
   news = Article.objects.order_by('-publish')
+  if request.GET.get('category') == "news":
+    news = Article.objects.filter(category=1).order_by('-publish')
+  if request.GET.get('category') == "history":
+    news = Article.objects.filter(category=2).order_by('-publish')
   paginator = Paginator(news, 6)
   page_number = request.GET.get('page')
   page_obj = paginator.get_page(page_number)

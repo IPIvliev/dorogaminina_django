@@ -225,56 +225,25 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-md-6 col-lg-3">
-          <div class="package-program ftco-animate">
-            <a href="#" class="img d-flex justify-content-center align-items-center" style="background-image: url({% static 'images/hist-1.jpg' %});">
-              <span>Узнать больше</span>
-            </a>
-            <div class="text mt-3">
-              <h3><a href="#">Фролищи</a></h3>
-              <p>Краткое описание.</p>
+        {% get_news 4 2 as histories %}
+        {% for article in histories %}
+          <div class="col-md-6 col-lg-3">
+            <div class="package-program ftco-animate">
+              <a href="{% url 'show_article' slug=article.slug %}" class="img d-flex justify-content-center align-items-center" style="background-image: url('{{ article.article_image.url}}');">
+                <span>Узнать больше</span>
+              </a>
+              <div class="text mt-3">
+                <h3><a href="{% url 'show_article' slug=article.slug %}">{{ article.title }}</a></h3>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="col-md-6 col-lg-3">
-          <div class="package-program ftco-animate">
-            <a href="#" class="img d-flex justify-content-center align-items-center" style="background-image: url({% static 'images/hist-2.jpg' %});">
-              <span>Узнать больше</span>
-            </a>
-            <div class="text mt-3">
-              <h3><a href="#">Нижний Новгород</a></h3>
-              <p>Краткое описание.</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-6 col-lg-3">
-          <div class="package-program ftco-animate">
-            <a href="#" class="img d-flex justify-content-center align-items-center" style="background-image: url({% static 'images/hist-3.jpeg' %});">
-              <span>Узнать больше</span>
-            </a>
-            <div class="text mt-3">
-              <h3><a href="#">Гражданин Минин</a></h3>
-              <p>Краткое описание.</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-6 col-lg-3">
-          <div class="package-program ftco-animate">
-            <a href="#" class="img d-flex justify-content-center align-items-center" style="background-image: url({% static 'images/hist-4.jpg' %});">
-              <span>Узнать больше</span>
-            </a>
-            <div class="text mt-3">
-              <h3><a href="#">Князь Пожарский</a></h3>
-              <p>Краткое описание.</p>
-            </div>
-          </div>
-        </div>
+        {% endfor %}
       </div>
     </div>
     <div class="container">
       <div class="row mt-4 justify-content-center ftco-animate">
         <div class="col-md-4 text-center">
-          <a href="#" class="btn-custom py-4">Узнать больше <span class="ion-ios-arrow-down ml-2"></span></a>
+          <a href="/blog.html?category=history" class="btn-custom py-4">Узнать больше <span class="ion-ios-arrow-down ml-2"></span></a>
         </div>
       </div>
     </div>
@@ -464,11 +433,11 @@
         {% for article in news %}
           <div class="col-md-4 ftco-animate">
             <div class="blog-entry justify-content-end">
-              <a href="blog-single.html" class="block-20" style="background-image: url('{{ article.article_image.url }}');">
+              <a href="{% url 'show_article' slug=article.slug %}" class="block-20" style="background-image: url('{{ article.article_image.url }}');">
               </a>
               <div class="text p-4 float-right d-block">
                 <div class="meta">
-                  <div><a href="#">{{ article.publish|date:'d.m.Y'}}</a></div>
+                  <div><a href="{% url 'show_article' slug=article.slug %}">{{ article.publish|date:'d.m.Y'}}</a></div>
                 </div>
                 <h3 class="heading mt-2"><a href="#">{{ article.title }}</a></h3>
               </div>
