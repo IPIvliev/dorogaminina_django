@@ -18,13 +18,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 TEMPLATE_DIR = os.path.join(BASE_DIR, "templates")
 STATICFILE_DIR = os.path.join(BASE_DIR, 'static/')
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+#STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 CKEDITOR_BASEPATH = "/static/ckeditor/ckeditor/"
 
-# STATICFILES_DIRS = [
-#     STATICFILE_DIR,
-# ]
+STATICFILES_DIRS = [
+    STATICFILE_DIR,
+]
 
 MEDIA_ROOT= os.path.join(BASE_DIR, 'media/')
 MEDIA_URL= "/media/"
@@ -103,8 +103,8 @@ DATABASES = {
     'default': {
       'ENGINE': 'django.db.backends.postgresql_psycopg2',
       'NAME': 'dorogaminina',
-      'USER' : 'razrus',
-      #'USER' : 'postgres',
+      #'USER' : 'razrus',
+      'USER' : 'postgres',
       'PASSWORD' : 'Huteras52',
       'HOST' : '127.0.0.1',
       'PORT' : '5432',

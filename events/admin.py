@@ -1,13 +1,23 @@
 from django.contrib import admin
 from .models import Event, Partner, Order, Place, Merch, Message
+from django import forms
+from ckeditor.widgets import CKEditorWidget
 
 @admin.register(Order)
 class OrderAdmin(admin.ModelAdmin):
     list_display = ('order_user', 'order_event', 'active')
 
+class EventAdminForm(forms.ModelForm):
+    about = forms.CharField(widget=CKEditorWidget())
+    prog = forms.CharField(widget=CKEditorWidget())
+    class Meta:
+        model = Event
+        fields = '__all__'
+
 @admin.register(Event)
 class EventAdmin(admin.ModelAdmin):
-    list_display = ('event_name', 'start_date', 'active')
+  form = EventAdminForm
+  list_display = ('event_name', 'start_date', 'active')
 
 @admin.register(Partner)
 class PartnerAdmin(admin.ModelAdmin):
