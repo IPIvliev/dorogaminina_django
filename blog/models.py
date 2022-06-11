@@ -30,9 +30,6 @@ class Article(models.Model):
   created = models.DateTimeField("Дата написания статьи", auto_now_add=True)
   updated = models.DateTimeField("Дата изменения статьи", auto_now=True)
 
-  # def get_absolute_url(self):
-  #   return reverse('article:atricle_detail', args=[self.slug])
-
   def save(self, *args, **kwargs):
     if not self.slug:
       print("Make slug")

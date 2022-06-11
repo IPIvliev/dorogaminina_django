@@ -86,8 +86,8 @@ class Order(models.Model):
   active = models.BooleanField(default=False)
 
   class Meta:
-      verbose_name = 'Оплата'
-      verbose_name_plural = 'Оплаты'
+      verbose_name = 'Заказ'
+      verbose_name_plural = 'Заказы'
 
 class Message(models.Model):
   name = models.CharField(max_length=50, null=True, blank=True)

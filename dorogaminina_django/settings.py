@@ -36,10 +36,7 @@ MEDIA_URL= "/media/"
 SECRET_KEY = 'django-insecure-6hw98=n0)bbu_ct6mzhop(*896)(*455+7j0maikpqx51dymd5'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = ['xn--80aahdwa0ajbdax.xn--p1ai', '81.177.165.238', '*']
-
+DEBUG = False
 
 # Application definition
 
@@ -53,6 +50,7 @@ INSTALLED_APPS = [
     'robokassa',
     'smsru',
     'ckeditor',
+    'import_export',
     'blog',
     'home',
     'events'
@@ -88,28 +86,30 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'dorogaminina_django.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
-
-DATABASES = {
-    'default': {
-      'ENGINE': 'django.db.backends.postgresql_psycopg2',
-      'NAME': 'dorogaminina',
-      'USER' : 'razrus',
-      #'USER' : 'postgres',
-      'PASSWORD' : 'Huteras52',
-      'HOST' : '127.0.0.1',
-      'PORT' : '5432',
+if DEBUG == True:
+    ALLOWED_HOSTS = []
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
     }
-}
+else:
+    ALLOWED_HOSTS = ['xn--80aahdwa0ajbdax.xn--p1ai', '81.177.165.238']
+    DATABASES = {
+        'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'dorogaminina',
+        'USER' : 'razrus',
+        #'USER' : 'postgres',
+        'PASSWORD' : 'Huteras52',
+        'HOST' : '127.0.0.1',
+        'PORT' : '5432',
+        }
+    }
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators

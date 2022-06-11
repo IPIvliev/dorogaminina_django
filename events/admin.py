@@ -2,10 +2,21 @@ from django.contrib import admin
 from .models import Event, Partner, Order, Place, Merch, Message
 from django import forms
 from ckeditor.widgets import CKEditorWidget
+from import_export.admin import ExportMixin, ExportActionMixin
+from import_export import resources
+
+class OrderResource(resources.ModelResource):
+    class Meta:
+        model = Order
+        fields = ('order_user__id','order_user__lastname', 'order_user__username', 'order_user__middlename', 'order_place__place_name', 'order_merch__merch_name', 'active')
+        export_order = ('order_user__id','order_user__lastname', 'order_user__username', 'order_user__middlename', 'order_place__place_name', 'order_merch__merch_name', 'active')
 
 @admin.register(Order)
-class OrderAdmin(admin.ModelAdmin):
-    list_display = ('order_user', 'order_event', 'active')
+class OrderAdmin(ExportActionMixin, admin.ModelAdmin):
+    resource_class = OrderResource
+    list_display = ('order_user', 'order_event', 'order_place', 'order_merch', 'price', 'active')
+    list_filter = ('active',)
+    search_fields = ['order_user__username', 'order_user__lastname', 'order_user__middlename', 'order_user__phone']
 
 class EventAdminForm(forms.ModelForm):
     about = forms.CharField(widget=CKEditorWidget())
