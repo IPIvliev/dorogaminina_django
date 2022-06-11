@@ -36,7 +36,7 @@ MEDIA_URL= "/media/"
 SECRET_KEY = 'django-insecure-6hw98=n0)bbu_ct6mzhop(*896)(*455+7j0maikpqx51dymd5'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 # Application definition
 
@@ -89,7 +89,7 @@ WSGI_APPLICATION = 'dorogaminina_django.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
-if DEBUG == True:
+if DEBUG == False:
     ALLOWED_HOSTS = []
     DATABASES = {
         'default': {
