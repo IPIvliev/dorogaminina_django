@@ -26,7 +26,7 @@ class FinalOrderForm(forms.Form):
     super(FinalOrderForm, self).__init__(*args, **kwargs)
 
     if event:
-      self.fields['order_merch'].queryset = Merch.objects.filter(merch_event=event)
+      self.fields['order_merch'].queryset = Merch.objects.filter(merch_event=event, active=True)
       self.fields['order_place'].queryset = Place.objects.filter(place_event=event, free__gt=0, active=True)
 
 class MessageForm(forms.ModelForm):
