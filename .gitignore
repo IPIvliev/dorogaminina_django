@@ -8,4 +8,6 @@ db.sqlite3
 media
 migrations
 __pycache__
-ckeditor
+static/ckeditor
+static/import_export
+static/admin
