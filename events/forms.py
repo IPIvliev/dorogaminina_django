@@ -27,7 +27,7 @@ class FinalOrderForm(forms.Form):
 
     if event:
       self.fields['order_merch'].queryset = Merch.objects.filter(merch_event=event)
-      self.fields['order_place'].queryset = Place.objects.filter(place_event=event, free__gt=0)
+      self.fields['order_place'].queryset = Place.objects.filter(place_event=event, free__gt=0, active=True)
 
 class MessageForm(forms.ModelForm):
   name = forms.CharField(widget=forms.TextInput(attrs={"class":"form-control", 'placeholder': 'Имя'}), label="", required=True)
