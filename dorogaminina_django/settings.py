@@ -89,7 +89,7 @@ WSGI_APPLICATION = 'dorogaminina_django.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
-if DEBUG == False:
+if DEBUG == True:
     ALLOWED_HOSTS = []
     DATABASES = {
         'default': {

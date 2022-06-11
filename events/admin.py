@@ -18,7 +18,6 @@ class OrderAdmin(ExportActionMixin, admin.ModelAdmin):
     list_filter = ('active', 'order_event__event_name')
     search_fields = ['order_user__username', 'order_user__lastname', 'order_user__middlename', 'order_user__phone']
 
-    @admin.display(description='User')
     def get_user(self, obj):
         return '%s %s' % (obj.order_user.lastname, obj.order_user.username)
 
