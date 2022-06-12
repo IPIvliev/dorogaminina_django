@@ -2,6 +2,8 @@
 {% load static %}
 
 {% block content %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery.maskedinput@1.4.1/src/jquery.maskedinput.min.js" type="text/javascript"></script>
 
 <section class="ftco-appointment" id="registration">
   <div class="overlay"></div>
@@ -33,5 +35,9 @@
     </div>
   </div>
 </section>
+
+<script>
+  $("#phone").mask("+7(999) 999-9999");
+</script>
 
 {% endblock %}

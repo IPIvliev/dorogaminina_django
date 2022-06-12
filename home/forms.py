@@ -12,7 +12,7 @@ class SignUpForm(forms.ModelForm):
     fields =('username', 'lastname', 'middlename', 'phone') 
 
 class LoginForm(forms.Form):
-  phone = forms.IntegerField(widget=forms.NumberInput(attrs={"class":"form-control", 'placeholder': 'Ваш Номер телефона'}), label="", required=True)
+  phone = forms.CharField(widget=forms.TextInput(attrs={"id":"phone", "class":"form-control", 'placeholder': 'Ваш Номер телефона'}), label="", required=True)
   password = forms.CharField(widget=forms.PasswordInput(attrs={"class":"form-control", 'placeholder': 'Пароль из sms'}), label="", required=True)
   
   class Meta: 
