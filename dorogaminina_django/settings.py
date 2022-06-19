@@ -162,6 +162,7 @@ SMS_RU = {
     # "SENDER": 'DorogaM', # отправитель - необязательно поле
 }
 
+ROBOKASSA_STRICT_CHECK = False
 ROBOKASSA_LOGIN = 'dorogaminina'
 #ROBOKASSA_PASSWORD1 = 'OdergiesFNK1'
 ROBOKASSA_PASSWORD1 = 'OdergiesFNK1'
