@@ -19,7 +19,7 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
 from home import views
-from events.views import payment_success, payment_fail
+from events.views import payment_success, payment_fail, payment_received
 from blog.views import show_article
 
 urlpatterns = [
@@ -36,7 +36,7 @@ urlpatterns = [
   path('logout.html', views.logout_form, name='logout'),
   path('robokassa/success', payment_success),
   path('robokassa/fail', payment_fail),
-  # path('robokassa/paid', payment_received),
+  path('robokassa/paid', payment_received),
 ]
 
 if settings.DEBUG:
