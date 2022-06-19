@@ -36,7 +36,7 @@ MEDIA_URL= "/media/"
 SECRET_KEY = 'django-insecure-6hw98=n0)bbu_ct6mzhop(*896)(*455+7j0maikpqx51dymd5'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 # Application definition
 
@@ -89,27 +89,27 @@ WSGI_APPLICATION = 'dorogaminina_django.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
-if DEBUG == True:
-    ALLOWED_HOSTS = []
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': BASE_DIR / 'db.sqlite3',
-        }
+# if DEBUG == True:
+#     ALLOWED_HOSTS = []
+#     DATABASES = {
+#         'default': {
+#             'ENGINE': 'django.db.backends.sqlite3',
+#             'NAME': BASE_DIR / 'db.sqlite3',
+#         }
+#     }
+# else:
+ALLOWED_HOSTS = ['xn--80aahdwa0ajbdax.xn--p1ai', '81.177.165.238']
+DATABASES = {
+    'default': {
+    'ENGINE': 'django.db.backends.postgresql_psycopg2',
+    'NAME': 'dorogaminina',
+    'USER' : 'razrus',
+    #'USER' : 'postgres',
+    'PASSWORD' : 'Huteras52',
+    'HOST' : '127.0.0.1',
+    'PORT' : '5432',
     }
-else:
-    ALLOWED_HOSTS = ['xn--80aahdwa0ajbdax.xn--p1ai', '81.177.165.238']
-    DATABASES = {
-        'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'dorogaminina',
-        'USER' : 'razrus',
-        #'USER' : 'postgres',
-        'PASSWORD' : 'Huteras52',
-        'HOST' : '127.0.0.1',
-        'PORT' : '5432',
-        }
-    }
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
@@ -156,17 +156,10 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'home.User'
 AUTHENTICATION_BACKENDS = ('home.backends.AuthBackend',)
 
-EMAIL_HOST = 'smtp.yandex.ru'
-EMAIL_PORT = 465
-EMAIL_HOST_USER = "k.belov@3dresin.ru"
-EMAIL_HOST_PASSWORD = "Odergies1"
-EMAIL_USE_TLS = False
-EMAIL_USE_SSL = True
-
 SMS_RU = {
     "API_ID": '4421930E-271F-0A98-8A40-F6306692C5E3', # если указан API ключ, логин и пароль пропускаем
     "TEST": False, # отправка смс в тестовом режиме, по умолчанию False
-    "SENDER": 'DorogaM', # отправитель - необязательно поле
+    # "SENDER": 'DorogaM', # отправитель - необязательно поле
 }
 
 ROBOKASSA_LOGIN = 'dorogaminina'
