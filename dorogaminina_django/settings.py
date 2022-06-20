@@ -173,17 +173,17 @@ LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
     'handlers': {
-      'file': {
-          'level': 'DEBUG',
-          'class': 'logging.FileHandler',
-          'formatter': 'file',
-          'filename': 'debug.log',
-      },
+        'file': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': 'debug.log',
+        },
     },
     'loggers': {
-      'news': {
-          'handlers': ['file'],
-          'level': 'DEBUG',
-      },
+        'django': {
+            'handlers': ['file'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
     },
 }
