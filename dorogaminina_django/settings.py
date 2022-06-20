@@ -173,21 +173,17 @@ LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
     'handlers': {
-        'console': {
-          'class': 'logging.StreamHandler',
-          'formatter': 'console',
-        },
-        'file': {
-            'level': 'DEBUG',
-            'class': 'logging.FileHandler',
-            'formatter': 'file',
-            'filename': 'debug.log',
-        },
+      'file': {
+          'level': 'DEBUG',
+          'class': 'logging.FileHandler',
+          'formatter': 'file',
+          'filename': 'debug.log',
+      },
     },
     'loggers': {
-        '': {
-            'handlers': ['file'],
-            'level': 'DEBUG',
-        },
+      'news': {
+          'handlers': ['file'],
+          'level': 'DEBUG',
+      },
     },
 }
