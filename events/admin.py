@@ -8,15 +8,15 @@ from import_export import resources
 class OrderResource(resources.ModelResource):
     class Meta:
         model = Order
-        fields = ('order_user__id','order_user__lastname', 'order_user__username', 'order_user__middlename', 'order_place__place_name', 'order_merch__merch_name', 'active')
-        export_order = ('order_user__id','order_user__lastname', 'order_user__username', 'order_user__middlename', 'order_place__place_name', 'order_merch__merch_name', 'active')
+        fields = ('order_user__id', 'order_user__phone', 'order_user__lastname', 'order_user__username', 'order_user__middlename', 'order_place__place_name', 'order_merch__merch_name', 'active')
+        export_order = ('order_user__id', 'order_user__phone', 'order_user__lastname', 'order_user__username', 'order_user__middlename', 'order_place__place_name', 'order_merch__merch_name', 'active')
 
 @admin.register(Order)
 class OrderAdmin(ExportActionMixin, admin.ModelAdmin):
     resource_class = OrderResource
-    list_display = ('order_user', 'get_user', 'order_place', 'order_merch', 'price', 'active')
+    list_display = ('id', 'order_user', 'get_user', 'order_place', 'order_merch', 'price', 'active')
     list_filter = ('active', 'order_event__event_name')
-    search_fields = ['order_user__username', 'order_user__lastname', 'order_user__middlename', 'order_user__phone']
+    search_fields = ['id', 'order_user__username', 'order_user__lastname', 'order_user__middlename', 'order_user__phone']
 
     def get_user(self, obj):
         return '%s %s' % (obj.order_user.lastname, obj.order_user.username)
