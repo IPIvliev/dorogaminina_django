@@ -132,8 +132,8 @@ def profile(request):
 
     price_form = RobokassaForm(initial={
                 'OutSum': order.price,
-                'InvId': request.user.id,
-                'Desc': order.id,
+                'InvId': order.id,
+                'Desc': request.user.id,
                 # 'IncCurrLabel': '',
                 # 'Culture': 'ru'
             })

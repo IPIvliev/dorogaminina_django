@@ -6,7 +6,7 @@ from django.views.decorators.csrf import csrf_exempt
 
 @csrf_exempt
 def payment_received(request):
-  data = request.POST
+  data = request.GET
   print("Request from payment_received")
   print(data)
   inv_id = data.get("InvId")
@@ -17,7 +17,7 @@ def payment_received(request):
 
 @csrf_exempt
 def payment_success(request):
-  data = request.POST
+  data = request.GET
   print("Request from payment_success")
   print(data)
   inv_id = data.get("InvId")
