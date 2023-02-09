@@ -23,17 +23,7 @@
       <div class="col-lg-8 ftco-animate">
         {{ article.body|safe }}
       </div> <!-- .col-md-8 -->
-      <div class="col-lg-4 sidebar ftco-animate">
-        <div class="sidebar-box ftco-animate">
-          <div class="categories">
-            <h3 class="heading-2">Категории</h3>
-            <li><a href="/blog.html?category=news">Новости </a></li>
-            {% if event.history_template == True %}
-              <li><a href="/blog.html?category=history">История </a></li>
-            {% endif %}
-          </div>
-        </div>
-      </div>
+      {% include "shared/blog_menu.html" %}
     </div>
   </div>
 </section> <!-- .section -->

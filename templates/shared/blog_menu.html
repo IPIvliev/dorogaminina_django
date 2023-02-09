@@ -1,0 +1,18 @@
+<div class="col-lg-4 sidebar ftco-animate">
+  <div class="sidebar-box ftco-animate">
+    <div class="categories">
+      <h3 class="heading-2">Категории</h3>
+      {% if event.blog_template == True %}
+        <li><a href="?category=news">Новости </a></li>
+      {% endif %}
+      {% if event.history_template == True %}
+        <li><a href="?category=history">История </a></li>
+      {% endif %}
+    </div>
+  </div>
+
+  <div class="sidebar-box ftco-animate">
+    <h3 class="heading-2">Информация</h3>
+    <p>Приглашаем к сотрудничеству представителей СМИ и блогеров.</p>
+  </div>
+</div>

@@ -22,7 +22,7 @@
           {% for article in page_obj %}
             <div class="col-md-6 ftco-animate">
               <div class="blog-entry justify-content-end">
-                <a href="blog-single.html" class="block-20" style="background-image: url('{{ article.article_image.url }}');">
+                <a href="{% url 'show_article' slug=article.slug %}" class="block-20" style="background-image: url('{{ article.article_image.url }}');">
                 </a>
                 <div class="text p-4 float-right d-block">
                   <div class="meta">
@@ -56,22 +56,7 @@
           </div>
         {% endif %}
       </div> <!-- .col-md-8 -->
-      <div class="col-lg-4 sidebar ftco-animate">
-        <div class="sidebar-box ftco-animate">
-          <div class="categories">
-            <h3 class="heading-2">Категории</h3>
-            <li><a href="?category=news">Новости </a></li>
-            {% if event.history_template == True %}
-              <li><a href="?category=history">История </a></li>
-            {% endif %}
-          </div>
-        </div>
-
-        <div class="sidebar-box ftco-animate">
-          <h3 class="heading-2">Информация</h3>
-          <p>Приглашаем к сотрудничеству представителей СМИ и блогеров.</p>
-        </div>
-      </div>
+      {% include "shared/blog_menu.html" %}
 
     </div>
   </div>

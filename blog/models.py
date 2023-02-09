@@ -22,7 +22,7 @@ class Category(models.Model):
 
 class Article(models.Model):
   title = models.CharField("Название статьи", max_length=350)
-  slug = models.SlugField("SEO адрес", max_length=350, blank=True)
+  slug = models.SlugField("SEO адрес", max_length=350, blank=True, allow_unicode=True)
   category = models.ForeignKey(Category, verbose_name="Категория", on_delete=models.SET_DEFAULT, default=1, related_name='categories_articles')
   article_image = models.FileField(upload_to='uploads/blog/', null=True, blank=True)
   body = models.TextField('Текст статьи', null=True, blank=True)
@@ -31,10 +31,12 @@ class Article(models.Model):
   updated = models.DateTimeField("Дата изменения статьи", auto_now=True)
 
   def save(self, *args, **kwargs):
-    if not self.slug:
-      print("Make slug")
+    try:
       self.slug = slugify(self.title, allow_unicode=True)
-    super(Article, self).save(*args, **kwargs)
+    except:
+      pass
+    finally:
+      super(Article, self).save(*args, **kwargs)
 
   class Meta:
     verbose_name = "Статья"
