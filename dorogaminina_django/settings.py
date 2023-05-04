@@ -93,13 +93,16 @@ if DEBUG == True:
     ALLOWED_HOSTS = []
     DATABASES = {
         'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'dorogaminina',
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
+
+        # 'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        # 'NAME': 'dorogaminina',
         # 'USER' : 'razrus',
-        'USER' : 'postgres',
-        'PASSWORD' : 'Huteras52',
-        'HOST' : '127.0.0.1',
-        'PORT' : '5432',
+        # 'USER' : 'postgres',
+        # 'PASSWORD' : 'Huteras52',
+        # 'HOST' : '127.0.0.1',
+        # 'PORT' : '5432',
         }
     }
 else:
