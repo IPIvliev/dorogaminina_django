@@ -119,7 +119,7 @@ def profile(request):
   fio = '%s %s %s' % (request.user.lastname, request.user.username, request.user.middlename)
 
   if request.GET.get('delivery') == "true":
-    price = active_event.addition_price
+    price = active_event.price - active_event.addition_price
     order.price = price
     order.save()
     price_form = RobokassaForm(initial={

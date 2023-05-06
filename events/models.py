@@ -4,8 +4,8 @@ from home.models import User
 class Event(models.Model):
   event_name = models.CharField(max_length=100)
   start_date = models.DateField()
-  price = models.IntegerField(default=0)
-  addition_price = models.IntegerField(default=0)
+  price = models.IntegerField('Стоимость участия', default=0)
+  addition_price = models.IntegerField('Стоимость электрички', default=0)
   phone = models.CharField('Телефон мероприятия', max_length=20, null=True, blank=True)
   email = models.CharField('Почта мероприятия', max_length=50, null=True, blank=True)
   info = models.CharField('Сообщение в профайле участников', max_length=750, null=True, blank=True)
@@ -14,6 +14,7 @@ class Event(models.Model):
   members = models.IntegerField('Всего участников во всех велопробегах', default=0)
   distance = models.IntegerField('Всего проехали км', default=0)
   amount = models.IntegerField('Всего велопробегов', default=0)
+  agreement = models.FileField('Соглашение об участии', upload_to='agreements/')
   description_template = models.BooleanField('Блок описания', default=False)
   statistic_template = models.BooleanField('Блок статистики', default=False)
   about_template = models.BooleanField('Блок О проекте', default=False)

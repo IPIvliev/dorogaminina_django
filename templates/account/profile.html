@@ -69,13 +69,13 @@
           Поздравляем! Вы успешно зарегистрировались на мероприятие: {{ event.event_name|striptags }}
         </div>
         {% else %}
-          {% if event.additive_price %}
+          {% if event.addition_price %}
             <div class="row">
               <div class="col-lg-6">
-                <a href="?delivery=true" class="btn-custom py-4" style="text-align: center">Включить доставку</a>
+                <a href="?delivery=false" class="btn-custom py-4" style="text-align: center">Поеду из Нижнего Новгорода</a>
               </div>
               <div class="col-lg-6">
-                <a href="?delivery=false" class="btn-custom py-4" style="text-align: center; ">Не включать доставку</a>
+                <a href="?delivery=true" class="btn-custom py-4" style="text-align: center; ">Присоединюсь в Балахне</a>
               </div>
             </div>
           
@@ -83,11 +83,14 @@
             
             <p>
               <div class="alert alert-primary" role="alert">
-                Внимание! Доставка 
+                Внимание!
                 {% if order.price == event.price %}
-                  <b>не включена</b>
+                  <b>Вы выбрали вариант отправления с основной группой участников из Нижнего Новгорода.
+                    Сбор участников в г. Нижнем Новгороде, регистрация и выдача корпоративных футболок пройдёт с 6.30 до 7.30 по адресу г. Нижний Новгород, Гордеевский сквер напротив дома № 13 по Московскому шоссе.
+                  </b>
                 {% else %}
-                  <b>включена</b>
+                  <b>Вы выбрали вариант присоединиться к участникам велопробега в Балахне.
+                     Сбор участников в г. Балахне, регистрация и выдача корпоративных футболок пройдёт с 8:30 до 9:30 на адресу г. Балахна, пл. Минина.</b>
                 {% endif %}
               </div>
             </p>
