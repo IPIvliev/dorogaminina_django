@@ -114,23 +114,30 @@ def contacts(request):
 @login_required
 def profile(request):
   active_event = Event.objects.get(active=True)
-  finalorderform = FinalOrderForm(event=active_event)
   order, created = Order.objects.get_or_create(order_event=active_event, order_user=request.user)
+  finalorderform = FinalOrderForm(event=active_event, order=order )
   fio = '%s %s %s %s' % (request.user.id, request.user.lastname, request.user.username, request.user.middlename)
 
-  if request.GET.get('delivery') == "true":
-    price = active_event.price - active_event.addition_price
-  else:
-    price = active_event.price
+  if order.active == False:
 
-  order.price = price
-  order.save()
-  
+    if request.GET.get('delivery') == "true":
+      price = active_event.price - active_event.addition_price
+
+      order.price = price
+      order.save()
+      
+    else:
+      price = active_event.price
+      order.price = price
+      order.save()
+    
+
   price_form = RobokassaForm(initial={
             'OutSum': order.price,
             'InvId': order.id,
             'Desc': fio,
         })
+
 
   if request.method == 'POST':
     form = FinalOrderForm(request.POST)
