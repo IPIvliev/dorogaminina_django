@@ -48,7 +48,7 @@ class Partner(models.Model):
 
 class Place(models.Model):
   place_name = models.CharField(max_length=100)
-  place_event = models.ForeignKey(Event, on_delete=models.CASCADE)
+  place_event = models.ForeignKey(Event, on_delete=models.CASCADE, verbose_name="Мероприятие")
   amount = models.IntegerField('Всего мест', default=0)
   busy = models.IntegerField('Занято мест', default=0)
   free = models.IntegerField('Свободно мест', default=0)
@@ -67,8 +67,8 @@ class Place(models.Model):
     return u'{0}'.format(self.place_name)
 
 class Merch(models.Model):
-  merch_name = models.CharField(max_length=100, null=True, blank=True)
-  merch_event = models.ForeignKey(Event, on_delete=models.CASCADE)
+  merch_name = models.CharField("Наименование футболки", max_length=100, null=True, blank=True)
+  merch_event = models.ForeignKey(Event, on_delete=models.CASCADE, verbose_name="Мероприятие")
   size = models.CharField(max_length=100, null=True, blank=True)
   merch_image = models.FileField(upload_to='uploads/merchs/', null=True, blank=True)
   active = models.BooleanField(default=False)
@@ -81,11 +81,11 @@ class Merch(models.Model):
     return u'{0}'.format(self.merch_name)
 
 class Order(models.Model):
-  order_event = models.ForeignKey(Event, on_delete=models.CASCADE)
-  order_user = models.ForeignKey(User, on_delete=models.CASCADE)
-  order_place = models.ForeignKey(Place, null=True, blank=True, on_delete=models.PROTECT)
-  order_merch = models.ForeignKey(Merch, null=True, blank=True, on_delete=models.PROTECT)
-  price = models.IntegerField(default=0)
+  order_event = models.ForeignKey(Event, on_delete=models.CASCADE, verbose_name="Мероприятие")
+  order_user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name="Участник")
+  order_place = models.ForeignKey(Place, null=True, blank=True, on_delete=models.PROTECT, verbose_name="Стоимость участия")
+  order_merch = models.ForeignKey(Merch, null=True, blank=True, on_delete=models.PROTECT, verbose_name="Футболка")
+  price = models.IntegerField("Стоимость", default=0)
   comment = models.CharField(max_length=250, null=True, blank=True)
   active = models.BooleanField(default=False)
 

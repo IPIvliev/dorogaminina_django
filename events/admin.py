@@ -14,13 +14,18 @@ class OrderResource(resources.ModelResource):
 @admin.register(Order)
 class OrderAdmin(ExportActionMixin, admin.ModelAdmin):
     resource_class = OrderResource
-    list_display = ('id', 'order_user', 'get_user', 'order_place', 'order_merch', 'price', 'active')
+    list_display = ('id', 'order_user', 'get_user_id', 'get_user', 'order_place', 'order_merch', 'price', 'active')
     list_filter = ('active', 'order_event__event_name')
     search_fields = ['id', 'order_user__username', 'order_user__lastname', 'order_user__middlename', 'order_user__phone']
 
+    @admin.display(description='ФИО участника')
     def get_user(self, obj):
         return '%s %s' % (obj.order_user.lastname, obj.order_user.username)
 
+    @admin.display(description='ID участника')
+    def get_user_id(self, obj):
+        return '%s' % (obj.order_user.id)
+    
 class EventAdminForm(forms.ModelForm):
     about = forms.CharField(widget=CKEditorWidget())
     prog = forms.CharField(widget=CKEditorWidget())
