@@ -22,7 +22,7 @@ class OrderAdmin(ExportActionMixin, admin.ModelAdmin):
     def get_user(self, obj):
         return '%s %s' % (obj.order_user.lastname, obj.order_user.username)
 
-    @admin.display(description='ID участника')
+    # @admin.display(description='ID участника')
     def get_user_id(self, obj):
         return '%s' % (obj.order_user.id)
     
