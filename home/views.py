@@ -122,15 +122,11 @@ def profile(request):
 
     if request.GET.get('delivery') == "true":
       price = active_event.price - active_event.addition_price
-
-      order.price = price
-      order.save()
-      
     else:
       price = active_event.price
-      order.price = price
-      order.save()
     
+    order.price = price
+    order.save()
 
   price_form = RobokassaForm(initial={
             'OutSum': order.price,
