@@ -37,6 +37,7 @@ urlpatterns = [
   path('robokassa/success', payment_success),
   path('robokassa/fail', payment_fail),
   path('robokassa/paid', payment_received),
+  path('captcha/', include('captcha.urls')),
 ]
 
 if settings.DEBUG:

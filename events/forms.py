@@ -1,4 +1,5 @@
 from django import forms
+from captcha.fields import CaptchaField
 from events.models import Merch, Place, Order, Message
 
 class MerchModelChoiceField(forms.ModelChoiceField):
@@ -36,6 +37,7 @@ class FinalOrderForm(forms.Form):
 class MessageForm(forms.ModelForm):
   name = forms.CharField(widget=forms.TextInput(attrs={"class":"form-control", 'placeholder': 'Имя'}), label="", required=True)
   email = forms.CharField(widget=forms.TextInput(attrs={"class":"form-control", 'placeholder': 'Email'}), label="", required=True)
+  captcha = CaptchaField()
   message = forms.CharField(widget=forms.Textarea(attrs={"class":"form-control", 'placeholder': 'Сообщение до 1000 символов'}), label="", required=True)
 
   class Meta: 

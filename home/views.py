@@ -100,10 +100,10 @@ def contacts(request):
   active_event = Event.objects.get(active=True)
   if request.method == 'POST': 
     form = MessageForm(request.POST)
-    print("Have POST")
     if form.is_valid():
-      print("Form valid")
       form.save()
+      return redirect(contacts)
+    else:
       return redirect(contacts)
   else:
     return render(request, "home/contacts.html", {
