@@ -13,12 +13,25 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 from pathlib import Path
 import os
 
+
+# Build paths inside the project like this: BASE_DIR / 'subdir'.
+# BASE_DIR = Path(__file__).resolve().parent.parent
+# PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
+
+# Media files
+# MEDIA_URL='/public_html/media/'
+# MEDIA_ROOT = BASE_DIR /'public_html/media'
+
+# STATIC_URL = '/public_html/static/'
+# STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+# STATIC_ROOT = os.path.join(BASE_DIR, 'public_html/static')
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 TEMPLATE_DIR = os.path.join(BASE_DIR, "templates")
 STATICFILE_DIR = os.path.join(BASE_DIR, 'static/')
 STATIC_URL = '/static/'
-# STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 CKEDITOR_BASEPATH = "/static/ckeditor/ckeditor/"
 
@@ -108,15 +121,25 @@ if DEBUG == True:
     }
 else:
     ALLOWED_HOSTS = ['xn--80aahdwa0ajbdax.xn--p1ai', '81.177.165.238']
+    # DATABASES = {
+    #     'default': {
+    #     'ENGINE': 'django.db.backends.postgresql_psycopg2',
+    #     'NAME': 'dorogaminina',
+    #     'USER' : 'razrus',
+    #     #'USER' : 'postgres',
+    #     'PASSWORD' : 'Huteras52',
+    #     'HOST' : '127.0.0.1',
+    #     'PORT' : '5432',
+    #     }
+    # }
     DATABASES = {
         'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'dorogaminina',
-        'USER' : 'razrus',
-        #'USER' : 'postgres',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'j1228127_dorogam',
+        'USER' : 'j1228127_dorogam',
         'PASSWORD' : 'Huteras52',
-        'HOST' : '127.0.0.1',
-        'PORT' : '5432',
+        'HOST' : 'localhost',
+        'PORT' : '3306',
         }
     }
 
@@ -176,7 +199,7 @@ ROBOKASSA_LOGIN = 'dorogaminina'
 #ROBOKASSA_PASSWORD1 = 'OdergiesFNK1'
 ROBOKASSA_PASSWORD1 = 'OdergiesFNK1'
 ROBOKASSA_PASSWORD2 = 'OdergiesFNK2'
-# ROBOKASSA_TEST_MODE = True
+ROBOKASSA_TEST_MODE = True
 
 LOGGING = {
     'version': 1,
