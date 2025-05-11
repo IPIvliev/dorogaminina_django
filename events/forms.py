@@ -1,6 +1,6 @@
 from django import forms
 from captcha.fields import CaptchaField
-from events.models import Merch, Place, Order, Message
+from events.models import Merch, Place, Order, Message, Event
 
 class MerchModelChoiceField(forms.ModelChoiceField):
      def label_from_instance(self, obj):
@@ -29,7 +29,7 @@ class FinalOrderForm(forms.Form):
 
     if event:
       self.fields['order_merch'].queryset = Merch.objects.filter(merch_event=event, active=True)
-      if order.price == 1500:
+      if order.price == Event.objects.get(active = True).price:
         self.fields['order_place'].queryset = Place.objects.filter(place_event=event, free__gt=0, active=True, place_name__iregex=r"^((?!Балахна).)*$")
       else:
         self.fields['order_place'].queryset = Place.objects.filter(place_event=event, free__gt=0, active=True, place_name__iregex=r"Балахна")

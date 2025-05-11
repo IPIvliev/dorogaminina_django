@@ -166,7 +166,7 @@ AUTH_USER_MODEL = 'home.User'
 AUTHENTICATION_BACKENDS = ('home.backends.AuthBackend',)
 
 SMS_RU = {
-    "API_ID": '4421930E-271F-0A98-8A40-F6306692C5E3', # если указан API ключ, логин и пароль пропускаем
+    "API_ID": '4E399A77-C189-225C-4D5A-E15F15F3FE82', # если указан API ключ, логин и пароль пропускаем
     "TEST": False, # отправка смс в тестовом режиме, по умолчанию False
     # "SENDER": 'DorogaM', # отправитель - необязательно поле
 }
