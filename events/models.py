@@ -15,6 +15,8 @@ class Event(models.Model):
   distance = models.IntegerField('Всего проехали км', default=0)
   amount = models.IntegerField('Всего велопробегов', default=0)
   agreement = models.FileField('Соглашение об участии', upload_to='agreements/')
+  position_1 = models.FileField('Изображение 1', upload_to='uploads/positions/')
+  position_2 = models.FileField('Изображение 2', upload_to='uploads/positions/')
   description_template = models.BooleanField('Блок описания', default=False)
   statistic_template = models.BooleanField('Блок статистики', default=False)
   about_template = models.BooleanField('Блок О проекте', default=False)
@@ -55,7 +57,10 @@ class Place(models.Model):
   active = models.BooleanField(default=False)
 
   def save(self, *args, **kwargs):
-    self.busy = self.order_set.count()
+    try:
+      self.busy = self.order_set.count()
+    except:
+       self.busy = 0
     self.free = self.amount - self.busy
     super(Place, self).save(*args, **kwargs)
 

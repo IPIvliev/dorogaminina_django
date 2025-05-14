@@ -9,7 +9,7 @@ def payment_received(request):
   data = request.GET
   print("Request from payment_received")
   print(data)
-  inv_id = data.get("InvId")
+  inv_id = int(data.get("InvId"))-2000
   order = Order.objects.get(id=inv_id)
   order.active = True
   order.save()
@@ -20,7 +20,7 @@ def payment_success(request):
   data = request.GET
   print("Request from payment_success")
   print(data)
-  inv_id = data.get("InvId")
+  inv_id = int(data.get("InvId"))-2000
   order = Order.objects.get(id=inv_id)
   order.active = True
   order.save()

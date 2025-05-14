@@ -13,43 +13,48 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 from pathlib import Path
 import os
 
+# SECURITY WARNING: don't run with debug turned on in production!
+DEBUG = True
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
-# BASE_DIR = Path(__file__).resolve().parent.parent
-# PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
+if DEBUG == False:
+    # Build paths inside the project like this: BASE_DIR / 'subdir'.
+    # BASE_DIR = Path(__file__).resolve().parent.parent
+    BASE_DIR = Path(__file__).resolve().parent.parent
+    # PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 
-# Media files
-# MEDIA_URL='/public_html/media/'
-# MEDIA_ROOT = BASE_DIR /'public_html/media'
+    # Media files
+    MEDIA_URL='/media/'
+    MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-# STATIC_URL = '/public_html/static/'
-# STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
-# STATIC_ROOT = os.path.join(BASE_DIR, 'public_html/static')
+    STATIC_URL = '/static/'
+    # STATICFILES_DIRS = [os.path.join(BASE_DIR, 'public_html/static')]
+    STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+    CKEDITOR_BASEPATH = "/static/ckeditor/ckeditor/"
+else:
+    # Build paths inside the project like this: BASE_DIR / 'subdir'.
+    BASE_DIR = Path(__file__).resolve().parent.parent
+
+    MEDIA_URL= "/media/"
+    MEDIA_ROOT= os.path.join(BASE_DIR, 'media')
+
+    STATIC_URL = '/static/'
+    # STATICFILE_DIR = os.path.join(BASE_DIR, 'static/')
+    STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+    CKEDITOR_BASEPATH = "/static/ckeditor/ckeditor/"
+
+    # STATICFILES_DIRS = [
+    #     STATICFILE_DIR,
+    # ]
+
 TEMPLATE_DIR = os.path.join(BASE_DIR, "templates")
-STATICFILE_DIR = os.path.join(BASE_DIR, 'static/')
-STATIC_URL = '/static/'
-# STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-
-CKEDITOR_BASEPATH = "/static/ckeditor/ckeditor/"
-
-STATICFILES_DIRS = [
-    STATICFILE_DIR,
-]
-
-MEDIA_ROOT= os.path.join(BASE_DIR, 'media/')
-MEDIA_URL= "/media/"
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-6hw98=n0)bbu_ct6mzhop(*896)(*455+7j0maikpqx51dymd5'
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
 
 # Application definition
 
@@ -105,20 +110,23 @@ WSGI_APPLICATION = 'dorogaminina_django.wsgi.application'
 
 if DEBUG == True:
     ALLOWED_HOSTS = []
+    # ALLOWED_HOSTS = ['xn--80aahdwa0ajbdax.xn--p1ai', '81.177.165.238']
     DATABASES = {
         'default': {
         "ENGINE": "django.db.backends.sqlite3",
-        "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
-
-        # 'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        # 'NAME': 'dorogaminina',
-        # 'USER' : 'razrus',
-        # 'USER' : 'postgres',
-        # 'PASSWORD' : 'Huteras52',
-        # 'HOST' : '127.0.0.1',
-        # 'PORT' : '5432',
+        "NAME": os.path.join(BASE_DIR, "db.sqlite3")
         }
     }
+    # DATABASES = {
+    #     'default': {
+    #     'ENGINE': 'django.db.backends.mysql',
+    #     'NAME': 'j1228127_dorogam',
+    #     'USER' : 'j1228127_dorogam',
+    #     'PASSWORD' : 'Huteras52',
+    #     'HOST' : 'localhost',
+    #     'PORT' : '3306',
+    #     }
+    # }
 else:
     ALLOWED_HOSTS = ['xn--80aahdwa0ajbdax.xn--p1ai', '81.177.165.238']
     # DATABASES = {
@@ -199,7 +207,7 @@ ROBOKASSA_LOGIN = 'dorogaminina'
 #ROBOKASSA_PASSWORD1 = 'OdergiesFNK1'
 ROBOKASSA_PASSWORD1 = 'OdergiesFNK1'
 ROBOKASSA_PASSWORD2 = 'OdergiesFNK2'
-ROBOKASSA_TEST_MODE = True
+# ROBOKASSA_TEST_MODE = True
 
 LOGGING = {
     'version': 1,
