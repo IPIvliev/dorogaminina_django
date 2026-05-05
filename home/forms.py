@@ -7,9 +7,11 @@ class SignUpForm(forms.ModelForm):
   middlename = forms.CharField(widget=forms.TextInput(attrs={"class":"form-control", 'placeholder': 'Отчество'}), label="")
   phone = forms.CharField(widget=forms.TextInput(attrs={"class":"form-control", "id": "phone", 'placeholder': 'Номер телефона'}), label="", required=True)
 
+  email = forms.EmailField(widget=forms.EmailInput(attrs={"class":"form-control", 'placeholder': 'Email'}), label="", required=True)
+
   class Meta: 
     model = User 
-    fields =('username', 'lastname', 'middlename', 'phone') 
+    fields =('username', 'lastname', 'middlename', 'email', 'phone') 
 
 class LoginForm(forms.Form):
   phone = forms.CharField(widget=forms.TextInput(attrs={"id":"phone", "class":"form-control", 'placeholder': 'Ваш Номер телефона'}), label="", required=True)

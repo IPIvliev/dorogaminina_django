@@ -4,12 +4,14 @@
 *.pyc
 *.pyo
 debug.log
+.config
 
 db.sqlite3
 media
 env
 migrations
 __pycache__
+**/migrations/__pycache__/
 static/ckeditor
 static/import_export
 static/admin

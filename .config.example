@@ -1,0 +1,34 @@
+SECRET_KEY=change-me
+# Leave DJANGO_ENV empty for auto-detection:
+# local machine -> local, Jino path -> production.
+DJANGO_ENV=
+DEBUG=
+ALLOWED_HOSTS=xn--80aahdwa0ajbdax.xn--p1ai,81.177.165.238
+CSRF_TRUSTED_ORIGINS=https://xn--80aahdwa0ajbdax.xn--p1ai,http://xn--80aahdwa0ajbdax.xn--p1ai
+STATIC_ROOT=
+
+MYSQL_NAME=
+MYSQL_USER=
+MYSQL_PASSWORD=
+MYSQL_HOST=localhost
+MYSQL_PORT=3306
+
+SMS_RU_API_ID=
+SMS_RU_TEST=False
+
+ROBOKASSA_LOGIN=
+ROBOKASSA_PASSWORD1=
+ROBOKASSA_PASSWORD2=
+
+PASSWORD_DELIVERY_METHOD=email
+PASSWORD_DELIVERY_EMAIL_SUBJECT=Пароль для Дороги Минина
+DEFAULT_FROM_EMAIL=
+
+EMAIL_BACKEND=django.core.mail.backends.smtp.EmailBackend
+EMAIL_HOST=smtp.mail.ru
+EMAIL_PORT=465
+EMAIL_HOST_USER=
+# For Mail.ru use an application password, not the mailbox password.
+EMAIL_HOST_PASSWORD=
+EMAIL_USE_SSL=True
+EMAIL_USE_TLS=False

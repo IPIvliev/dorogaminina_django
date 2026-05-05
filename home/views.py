@@ -5,37 +5,48 @@ from events.models import Place, Event, Partner, Order
 from blog.models import Article
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from django.db import transaction
+import logging
 import random, string
 from django.core.paginator import Paginator
 
 from robokassa.forms import RobokassaForm
-from smsru.service import SmsRuApi
- 
+from home.password_delivery import send_registration_password
+
+logger = logging.getLogger(__name__)
+
+def render_index(request, registrationform=SignUpForm):
+  event = Event.objects.get(active='True')
+  return render(request, "home/index.html", {
+    'title': event.event_name,
+    'registrationform': registrationform,
+    'partners': Partner.objects.filter(active=True).order_by('partner_order'),
+    'event': event
+  })
+
 def index(request):
   if request.method == 'POST': 
     form = SignUpForm(request.POST)
     if form.is_valid():
-      api = SmsRuApi()
-      user = form.save()
-      more = ''.join(random.choice(string.ascii_lowercase + string.ascii_uppercase + string.digits) for _ in range(5))
-      user.more = more
-      user.set_password(more)
-      user.save()
-      message = 'Ваш пароль для Дороги Минина: ' + user.more
-      api.send_one_sms(user.phone, message)
+      try:
+        with transaction.atomic():
+          user = form.save()
+          more = ''.join(random.choice(string.ascii_lowercase + string.ascii_uppercase + string.digits) for _ in range(5))
+          user.more = more
+          user.set_password(more)
+          user.save()
+          send_registration_password(user)
+      except Exception:
+        logger.exception("Failed to deliver registration password.")
+        form.add_error(None, "Не удалось отправить пароль. Проверьте настройки доставки пароля или попробуйте позже.")
+        return render_index(request, form)
       login(request, user)
       return redirect(profile)
     else:
       print("Registration Form is not valid")
-      return redirect(index)
+      return render_index(request, form)
   else:
-    event = Event.objects.get(active='True')
-    return render(request, "home/index.html", {
-      'title': event.event_name,
-      'registrationform': SignUpForm,
-      'partners': Partner.objects.filter(active=True).order_by('partner_order'),
-      'event': event
-    })
+    return render_index(request)
 
 def login_form(request):
   if request.method == 'POST':
@@ -130,16 +141,17 @@ def profile(request):
 
   price_form = RobokassaForm(initial={
             'OutSum': order.price,
-            'InvId': 2000 + order.id,
+            'InvId': 3000 + order.id,
             'Desc': fio,
         })
 
 
   if request.method == 'POST':
-    form = FinalOrderForm(request.POST)
+    form = FinalOrderForm(request.POST, event=active_event, order=order)
     if form.is_valid():
       order.order_merch = form.cleaned_data['order_merch']
       order.order_place = form.cleaned_data['order_place']
+      order.comment = form.cleaned_data['comment']
       order.save()
       place = Place.objects.get(id=order.order_place.id)
       place.save()

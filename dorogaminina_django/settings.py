@@ -13,40 +13,71 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 from pathlib import Path
 import os
 
+BASE_DIR = Path(__file__).resolve().parent.parent
+
+
+def load_config(path):
+    config = {}
+    if not path.exists():
+        return config
+
+    for raw_line in path.read_text(encoding="utf-8").splitlines():
+        line = raw_line.strip()
+        if not line or line.startswith("#") or "=" not in line:
+            continue
+        key, value = line.split("=", 1)
+        config[key.strip()] = value.strip().strip('"').strip("'")
+    return config
+
+
+CONFIG = load_config(BASE_DIR / ".config")
+
+
+def get_config(name, default=None):
+    return os.environ.get(name, CONFIG.get(name, default))
+
+
+def get_config_bool(name, default=False):
+    value = get_config(name)
+    return parse_bool(value, default)
+
+
+def parse_bool(value, default=False):
+    if value in (None, ""):
+        return default
+    return str(value).lower() in ("1", "true", "yes", "on")
+
+
+def get_config_int(name, default=0):
+    value = get_config(name)
+    if value in (None, ""):
+        return default
+    return int(value)
+
+
+def is_jino_hosting():
+    return BASE_DIR.as_posix().startswith("/home/users/j/j1228127/")
+
+
+DJANGO_ENV = get_config("DJANGO_ENV") or ("production" if is_jino_hosting() else "local")
+
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = parse_bool(os.environ.get("DJANGO_DEBUG", CONFIG.get("DEBUG")), DJANGO_ENV != "production")
 
-if DEBUG == False:
-    # Build paths inside the project like this: BASE_DIR / 'subdir'.
-    # BASE_DIR = Path(__file__).resolve().parent.parent
-    BASE_DIR = Path(__file__).resolve().parent.parent
-    # PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
+MEDIA_URL = "/media/"
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
-    # Media files
-    MEDIA_URL='/media/'
-    MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+STATIC_URL = "/static/"
+CKEDITOR_BASEPATH = "/static/ckeditor/ckeditor/"
 
-    STATIC_URL = '/static/'
-    # STATICFILES_DIRS = [os.path.join(BASE_DIR, 'public_html/static')]
-    STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-
-    CKEDITOR_BASEPATH = "/static/ckeditor/ckeditor/"
+if DEBUG:
+    STATICFILE_DIR = os.path.join(BASE_DIR, "static")
+    STATICFILES_DIRS = [
+        STATICFILE_DIR,
+    ]
+    STATIC_ROOT = get_config("STATIC_ROOT", os.path.join(BASE_DIR, "staticfiles"))
 else:
-    # Build paths inside the project like this: BASE_DIR / 'subdir'.
-    BASE_DIR = Path(__file__).resolve().parent.parent
-
-    MEDIA_URL= "/media/"
-    MEDIA_ROOT= os.path.join(BASE_DIR, 'media')
-
-    STATIC_URL = '/static/'
-    # STATICFILE_DIR = os.path.join(BASE_DIR, 'static/')
-    STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-
-    CKEDITOR_BASEPATH = "/static/ckeditor/ckeditor/"
-
-    # STATICFILES_DIRS = [
-    #     STATICFILE_DIR,
-    # ]
+    STATIC_ROOT = get_config("STATIC_ROOT", os.path.join(BASE_DIR, "static"))
 
 TEMPLATE_DIR = os.path.join(BASE_DIR, "templates")
 
@@ -54,7 +85,7 @@ TEMPLATE_DIR = os.path.join(BASE_DIR, "templates")
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-6hw98=n0)bbu_ct6mzhop(*896)(*455+7j0maikpqx51dymd5'
+SECRET_KEY = get_config("SECRET_KEY", "unsafe-local-development-key")
 
 # Application definition
 
@@ -108,46 +139,37 @@ WSGI_APPLICATION = 'dorogaminina_django.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
-if DEBUG == True:
-    ALLOWED_HOSTS = []
-    # ALLOWED_HOSTS = ['xn--80aahdwa0ajbdax.xn--p1ai', '81.177.165.238']
+if DJANGO_ENV == "local":
+    ALLOWED_HOSTS = ["localhost", "127.0.0.1", "[::1]"]
+    CSRF_TRUSTED_ORIGINS = [
+        "http://localhost:8000",
+        "http://127.0.0.1:8000",
+    ]
     DATABASES = {
-        'default': {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": os.path.join(BASE_DIR, "db.sqlite3")
+        "default": {
+            "ENGINE": "django.db.backends.sqlite3",
+            "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
         }
     }
-    # DATABASES = {
-    #     'default': {
-    #     'ENGINE': 'django.db.backends.mysql',
-    #     'NAME': 'j1228127_dorogam',
-    #     'USER' : 'j1228127_dorogam',
-    #     'PASSWORD' : 'Huteras52',
-    #     'HOST' : 'localhost',
-    #     'PORT' : '3306',
-    #     }
-    # }
 else:
-    ALLOWED_HOSTS = ['xn--80aahdwa0ajbdax.xn--p1ai', '81.177.165.238']
-    # DATABASES = {
-    #     'default': {
-    #     'ENGINE': 'django.db.backends.postgresql_psycopg2',
-    #     'NAME': 'dorogaminina',
-    #     'USER' : 'razrus',
-    #     #'USER' : 'postgres',
-    #     'PASSWORD' : 'Huteras52',
-    #     'HOST' : '127.0.0.1',
-    #     'PORT' : '5432',
-    #     }
-    # }
+    ALLOWED_HOSTS = [
+        host.strip()
+        for host in get_config("ALLOWED_HOSTS", "xn--80aahdwa0ajbdax.xn--p1ai,81.177.165.238").split(",")
+        if host.strip()
+    ]
+    CSRF_TRUSTED_ORIGINS = [
+        origin.strip()
+        for origin in get_config("CSRF_TRUSTED_ORIGINS", "https://xn--80aahdwa0ajbdax.xn--p1ai,http://xn--80aahdwa0ajbdax.xn--p1ai").split(",")
+        if origin.strip()
+    ]
     DATABASES = {
-        'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'j1228127_dorogam',
-        'USER' : 'j1228127_dorogam',
-        'PASSWORD' : 'Huteras52',
-        'HOST' : 'localhost',
-        'PORT' : '3306',
+        "default": {
+            "ENGINE": "django.db.backends.mysql",
+            "NAME": get_config("MYSQL_NAME", ""),
+            "USER": get_config("MYSQL_USER", ""),
+            "PASSWORD": get_config("MYSQL_PASSWORD", ""),
+            "HOST": get_config("MYSQL_HOST", "localhost"),
+            "PORT": get_config("MYSQL_PORT", "3306"),
         }
     }
 
@@ -196,17 +218,28 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'home.User'
 AUTHENTICATION_BACKENDS = ('home.backends.AuthBackend',)
 
+PASSWORD_DELIVERY_METHOD = get_config("PASSWORD_DELIVERY_METHOD", "email")
+PASSWORD_DELIVERY_EMAIL_SUBJECT = get_config("PASSWORD_DELIVERY_EMAIL_SUBJECT", "Пароль для Дороги Минина")
+
+EMAIL_BACKEND = get_config("EMAIL_BACKEND", "django.core.mail.backends.smtp.EmailBackend")
+EMAIL_HOST = get_config("EMAIL_HOST", "smtp.mail.ru")
+EMAIL_PORT = get_config_int("EMAIL_PORT", 465)
+EMAIL_HOST_USER = get_config("EMAIL_HOST_USER", "")
+EMAIL_HOST_PASSWORD = get_config("EMAIL_HOST_PASSWORD", "")
+EMAIL_USE_SSL = get_config_bool("EMAIL_USE_SSL", True)
+EMAIL_USE_TLS = get_config_bool("EMAIL_USE_TLS", False)
+DEFAULT_FROM_EMAIL = get_config("DEFAULT_FROM_EMAIL", EMAIL_HOST_USER or "no-reply@localhost")
+
 SMS_RU = {
-    "API_ID": '4E399A77-C189-225C-4D5A-E15F15F3FE82', # если указан API ключ, логин и пароль пропускаем
-    "TEST": False, # отправка смс в тестовом режиме, по умолчанию False
+    "API_ID": get_config("SMS_RU_API_ID", ""), # если указан API ключ, логин и пароль пропускаем
+    "TEST": get_config_bool("SMS_RU_TEST", False), # отправка смс в тестовом режиме, по умолчанию False
     # "SENDER": 'DorogaM', # отправитель - необязательно поле
 }
 
 ROBOKASSA_STRICT_CHECK = True
-ROBOKASSA_LOGIN = 'dorogaminina'
-#ROBOKASSA_PASSWORD1 = 'OdergiesFNK1'
-ROBOKASSA_PASSWORD1 = 'OdergiesFNK1'
-ROBOKASSA_PASSWORD2 = 'OdergiesFNK2'
+ROBOKASSA_LOGIN = get_config("ROBOKASSA_LOGIN", "")
+ROBOKASSA_PASSWORD1 = get_config("ROBOKASSA_PASSWORD1", "")
+ROBOKASSA_PASSWORD2 = get_config("ROBOKASSA_PASSWORD2", "")
 # ROBOKASSA_TEST_MODE = True
 
 LOGGING = {
