@@ -3,8 +3,8 @@ SECRET_KEY=change-me
 # local machine -> local, Jino path -> production.
 DJANGO_ENV=
 DEBUG=
-ALLOWED_HOSTS=xn--80aahdwa0ajbdax.xn--p1ai,81.177.165.238
-CSRF_TRUSTED_ORIGINS=https://xn--80aahdwa0ajbdax.xn--p1ai,http://xn--80aahdwa0ajbdax.xn--p1ai
+ALLOWED_HOSTS=xn--80aahdwa0ajbdax.xn--p1ai,www.xn--80aahdwa0ajbdax.xn--p1ai,81.177.165.238
+CSRF_TRUSTED_ORIGINS=https://xn--80aahdwa0ajbdax.xn--p1ai,http://xn--80aahdwa0ajbdax.xn--p1ai,https://www.xn--80aahdwa0ajbdax.xn--p1ai,http://www.xn--80aahdwa0ajbdax.xn--p1ai
 STATIC_ROOT=
 
 MYSQL_NAME=

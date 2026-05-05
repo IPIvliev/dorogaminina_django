@@ -238,15 +238,15 @@ class PaymentCallbackTests(TempMediaTestCase):
         )
 
     def test_success_callback_activates_order(self):
-        response = self.client.get(f"/robokassa/success?InvId={2000 + self.order.id}")
+        response = self.client.get(f"/robokassa/success?InvId={3000 + self.order.id}")
 
         self.order.refresh_from_db()
         self.assertTrue(self.order.active)
         self.assertRedirects(response, "/profile.html", fetch_redirect_response=False)
 
     def test_paid_callback_activates_order(self):
-        response = self.client.get(f"/robokassa/paid?InvId={2000 + self.order.id}")
+        response = self.client.post(f"/robokassa/paid", {"InvId": 3000 + self.order.id})
 
         self.order.refresh_from_db()
         self.assertTrue(self.order.active)
-        self.assertRedirects(response, "/profile.html", fetch_redirect_response=False)
+        self.assertEqual(response.content.decode(), f"OK{3000 + self.order.id}")
