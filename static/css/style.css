@@ -8997,6 +8997,13 @@ textarea.form-control {
 .contact-section .contact-info p span {
   color: #000; }
 
+.contact-section .contact-info-compact p {
+  margin-bottom: 0;
+  line-height: 1.35; }
+
+.contact-section .contact-info-compact .h4 {
+  margin-bottom: 0; }
+
 .contact-form .form-group {
   position: relative; }
 
