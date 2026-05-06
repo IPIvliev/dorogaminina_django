@@ -256,12 +256,23 @@ LOGGING = {
             'class': 'logging.FileHandler',
             'filename': 'debug.log',
         },
+        'payment_file': {
+            'level': 'INFO',
+            'class': 'logging.FileHandler',
+            'filename': 'payment_debug.log',
+            'formatter': 'file',
+        },
     },
     'loggers': {
         'django': {
             'handlers': ['file'],
             'level': 'ERROR',
             'propagate': True,
+        },
+        'events.views': {
+            'handlers': ['payment_file'],
+            'level': 'INFO',
+            'propagate': False,
         },
     },
 }

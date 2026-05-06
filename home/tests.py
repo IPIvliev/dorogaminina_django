@@ -1,5 +1,6 @@
 import shutil
 import tempfile
+from hashlib import md5
 from unittest.mock import patch
 
 from django.core import mail
@@ -237,16 +238,54 @@ class PaymentCallbackTests(TempMediaTestCase):
             active=False,
         )
 
+    def robokassa_signature(self, inv_id, password, out_sum=None):
+        out_sum = out_sum or str(self.order.price)
+        return md5(f"{out_sum}:{inv_id}:{password}".encode("utf-8")).hexdigest()
+
+    @override_settings(ROBOKASSA_PASSWORD1="success-password")
     def test_success_callback_activates_order(self):
-        response = self.client.get(f"/robokassa/success?InvId={3000 + self.order.id}")
+        inv_id = 3000 + self.order.id
+        response = self.client.get(
+            "/robokassa/success",
+            {
+                "OutSum": self.order.price,
+                "InvId": inv_id,
+                "SignatureValue": self.robokassa_signature(inv_id, "success-password"),
+            },
+        )
 
         self.order.refresh_from_db()
         self.assertTrue(self.order.active)
         self.assertRedirects(response, "/profile.html", fetch_redirect_response=False)
 
+    @override_settings(ROBOKASSA_PASSWORD2="result-password")
     def test_paid_callback_activates_order(self):
-        response = self.client.post(f"/robokassa/paid", {"InvId": 3000 + self.order.id})
+        inv_id = 3000 + self.order.id
+        response = self.client.get(
+            "/robokassa/paid",
+            {
+                "OutSum": self.order.price,
+                "InvId": inv_id,
+                "SignatureValue": self.robokassa_signature(inv_id, "result-password"),
+            },
+        )
 
         self.order.refresh_from_db()
         self.assertTrue(self.order.active)
-        self.assertEqual(response.content.decode(), f"OK{3000 + self.order.id}")
+        self.assertEqual(response.content.decode(), f"OK{inv_id}")
+
+    @override_settings(ROBOKASSA_PASSWORD2="result-password")
+    def test_paid_callback_rejects_invalid_signature(self):
+        inv_id = 3000 + self.order.id
+        response = self.client.get(
+            "/robokassa/paid",
+            {
+                "OutSum": self.order.price,
+                "InvID": inv_id,
+                "SignatureValue": "bad-signature",
+            },
+        )
+
+        self.order.refresh_from_db()
+        self.assertFalse(self.order.active)
+        self.assertEqual(response.status_code, 400)
