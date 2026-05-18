@@ -65,7 +65,7 @@ DJANGO_ENV = get_config("DJANGO_ENV") or ("production" if is_jino_hosting() else
 DEBUG = parse_bool(os.environ.get("DJANGO_DEBUG", CONFIG.get("DEBUG")), DJANGO_ENV != "production")
 
 MEDIA_URL = "/media/"
-MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+MEDIA_ROOT = get_config("MEDIA_ROOT") or os.path.join(BASE_DIR, "media")
 
 STATIC_URL = "/static/"
 CKEDITOR_BASEPATH = "/static/ckeditor/ckeditor/"
